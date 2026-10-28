@@ -75,4 +75,7 @@ group :test do
 
   # One-liner matchers for common Rails functionality [https://github.com/thoughtbot/shoulda-matchers]
   gem "shoulda-matchers"
+
+  # Block and stub real HTTP requests in specs [https://github.com/bblimke/webmock]
+  gem "webmock"
 end
