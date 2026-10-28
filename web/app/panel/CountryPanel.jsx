@@ -7,6 +7,10 @@ const SECTIONS = [["leadership", "Leadership"], ["government", "Government"], ["
   ["economy", "Economy"], ["politics", "Politics"]];
 const hostOf = (url) => new URL(url).hostname;
 const fieldName = (field) => field.key.split(".")[1];
+// Full recognition goes without saying; partial or disputed status keeps its
+// row so its source stays reachable, beside the banner.
+const worthShowing = (field, sourced) =>
+  sourced && !(field.key === "government.recognitionStatus" && sourced.value.status === "full");
 
 function useEscape(onClose) {
   useEffect(() => {
@@ -71,7 +75,7 @@ function Profile({ country, today }) {
 }
 
 function Section({ title, section, fields, today }) {
-  const present = fields.filter((field) => section[fieldName(field)]);
+  const present = fields.filter((field) => worthShowing(field, section[fieldName(field)]));
   if (present.length === 0) return null;
   return (
     <section className="mb-5">

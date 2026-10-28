@@ -13,7 +13,7 @@ const data = {
   country: async (code) => read(`countries/${code}.json`),
   borders: async () => ({ countries: [], disputed: [] }),
 };
-const createRenderer = async () => ({ setData: vi.fn(), select: vi.fn(), destroy: vi.fn() });
+const createRenderer = async () => ({ setData: vi.fn(), select: vi.fn(), setLayer: vi.fn(), destroy: vi.fn() });
 
 function renderExplorer(code) {
   const navigate = vi.fn();
@@ -70,5 +70,14 @@ describe("Explorer", () => {
     renderExplorer("FRA");
 
     expect(await screen.findByText("France profile opened")).toHaveAttribute("aria-live", "polite");
+  });
+
+  it("colors the globe by the layer the user picks and shows its legend", async () => {
+    renderExplorer(undefined);
+    await screen.findByText("Click a country or search");
+
+    await userEvent.click(screen.getByRole("radio", { name: "Armed conflict" }));
+
+    expect(screen.getByRole("list", { name: "Armed conflict legend" })).toHaveTextContent("Active armed conflict");
   });
 });

@@ -25,3 +25,9 @@ jobs:
       - run: npm test
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      - name: Lighthouse (performance and accessibility, median of three)
+        run: |
+          SNAPSHOT_DIR=../contracts/examples npm run build
+          npx wrangler pages dev build/client --port 4180 --compatibility-date=2026-10-23 > wrangler.log 2>&1 &
+          for attempt in $(seq 1 60); do curl -fs -o /dev/null http://localhost:4180/ && break; sleep 1; done
+          npm run lighthouse -- http://localhost:4180/ http://localhost:4180/country/FRA

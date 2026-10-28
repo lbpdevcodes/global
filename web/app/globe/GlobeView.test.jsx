@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { GlobeView } from "./GlobeView.jsx";
 
 function fakeRenderer() {
-  const renderer = { setData: vi.fn(), select: vi.fn(), destroy: vi.fn() };
+  const renderer = { setData: vi.fn(), select: vi.fn(), setLayer: vi.fn(), destroy: vi.fn() };
   const create = vi.fn(async (_container, handlers) => {
     renderer.handlers = handlers;
     return renderer;
@@ -50,5 +50,18 @@ describe("GlobeView", () => {
     unmount();
 
     expect(renderer.destroy).toHaveBeenCalled();
+  });
+
+  it("colors the globe by the chosen layer, with a text label for each country", async () => {
+    const { renderer, create } = fakeRenderer();
+    const layer = { id: "conflictStatus", classes: [{ label: "None recorded", color: "#7b8394", test: () => true }],
+      describe: () => "None recorded" };
+    const quiet = { ...france, layers: { conflictStatus: { value: "none", asOf: "2026-10-27" } } };
+
+    render(<GlobeView borders={borders} entities={[quiet]} focus={null} layer={layer} onSelect={vi.fn()} createRenderer={create} />);
+
+    await waitFor(() => expect(renderer.setLayer).toHaveBeenLastCalledWith({
+      colors: new Map([["FRA", "#7b8394"]]), labels: new Map([["FRA", "None recorded"]]),
+    }));
   });
 });

@@ -59,7 +59,9 @@ test("the panel opens within 300 ms of choosing a country", async ({ page }) => 
     window.__panelOpened = new Promise((resolve) => {
       const start = performance.now();
       const observer = new MutationObserver(() => {
-        if (document.querySelector("h2")?.textContent === "Denmark" && document.querySelector("dl")) {
+        const loaded = !document.querySelector('[aria-label^="Loading"]')
+          && [...document.querySelectorAll("h3")].some((heading) => heading.textContent === "Sources");
+        if (document.querySelector("h2")?.textContent === "Denmark" && loaded) {
           observer.disconnect();
           resolve(performance.now() - start);
         }

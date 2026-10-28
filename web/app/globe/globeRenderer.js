@@ -1,4 +1,4 @@
-import { geoContains } from "d3-geo";
+import { geoArea, geoContains } from "d3-geo";
 import Globe from "globe.gl";
 import { MeshPhongMaterial } from "three";
 
@@ -15,6 +15,9 @@ const COLORS = {
   atmosphere: "#7dd3fc",
 };
 const NATURAL_EARTH_NOTE = "Natural Earth, 2022";
+// Shapes are added a few at a time, one batch per frame, largest first, so
+// building their geometry never blocks input for long.
+const SHAPES_PER_FRAME = 8;
 
 const escapeHtml = (text) => text.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const prefersReducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -22,15 +25,17 @@ const prefersReducedMotion = () => window.matchMedia?.("(prefers-reduced-motion:
 // Disputed areas: a translucent amber fill and outline (globe.gl's polygon caps
 // have no texture coordinates, so a hatch pattern cannot be mapped onto them).
 // globe.gl behind the renderer interface GlobeView expects:
-// setData({countries, disputed, entities, dots}), select(code, centroid), destroy().
+// setData({countries, disputed, entities, dots}), setLayer({colors, labels} | null),
+// select(code, centroid), destroy().
 export function createGlobeRenderer(container, { onSelect }) {
-  const state = { selected: null, hovered: null, countries: [], entities: new Map() };
+  const state = { selected: null, hovered: null, countries: [], entities: new Map(), layer: null, frame: null };
   const isDisputed = (feature) => feature.properties.disputed === true;
   const nameOf = (code, fallback) => state.entities.get(code)?.name ?? fallback;
 
   const capColor = (feature) => {
     if (isDisputed(feature)) return COLORS.disputedFill;
     const { code } = feature.properties;
+    if (state.layer) return state.layer.colors.get(code) ?? COLORS.land;
     if (code === state.selected) return COLORS.selected;
     return code === state.hovered && state.entities.has(code) ? COLORS.hovered : COLORS.land;
   };
@@ -39,7 +44,9 @@ export function createGlobeRenderer(container, { onSelect }) {
     const { code, name, note } = feature.properties;
     if (isDisputed(feature)) return `<div class="globe-label"><b>${escapeHtml(name)}</b><br>${escapeHtml(note ?? "")} (${NATURAL_EARTH_NOTE})</div>`;
     const known = state.entities.has(code);
-    return `<div class="globe-label">${escapeHtml(nameOf(code, name))}${known ? "" : " · not profiled"}</div>`;
+    const layerText = state.layer?.labels.get(code);
+    const detail = known ? (layerText ? ` · ${escapeHtml(layerText)}` : "") : " · not profiled";
+    return `<div class="globe-label">${escapeHtml(nameOf(code, name))}${detail}</div>`;
   };
 
   const countryAt = ({ lat, lng }) => state.countries.find((feature) => geoContains(feature, [lng, lat]));
@@ -58,9 +65,12 @@ export function createGlobeRenderer(container, { onSelect }) {
     .atmosphereAltitude(0.12)
     .polygonCapColor(capColor)
     .polygonSideColor(() => "rgba(5, 7, 13, 0.6)")
-    .polygonStrokeColor((feature) => (isDisputed(feature) ? COLORS.disputedStroke : COLORS.stroke))
+    .polygonStrokeColor((feature) => {
+      if (isDisputed(feature)) return COLORS.disputedStroke;
+      return state.layer && feature.properties.code === state.selected ? "#ffffff" : COLORS.stroke;
+    })
     .polygonAltitude((feature) => (isDisputed(feature) ? 0.009 : feature.properties.code === state.selected ? 0.014 : 0.006))
-    .polygonsTransitionDuration(200)
+    .polygonsTransitionDuration(0)
     .polygonLabel(label)
     .onPolygonHover((feature) => {
       state.hovered = feature && !isDisputed(feature) ? feature.properties.code : null;
@@ -68,11 +78,14 @@ export function createGlobeRenderer(container, { onSelect }) {
       globe.polygonCapColor(capColor);
     })
     .onPolygonClick((feature, _event, coords) => choose(feature, coords))
-    .pointColor((dot) => (dot.code === state.selected ? COLORS.selected : COLORS.dot))
+    .pointColor((dot) => state.layer?.colors.get(dot.code) ?? (dot.code === state.selected ? COLORS.selected : COLORS.dot))
     .pointAltitude(0.012)
     .pointRadius((dot) => (dot.code === state.selected ? 0.75 : 0.45))
     .pointLabel((dot) => `<div class="globe-label">${escapeHtml(dot.name)}</div>`)
     .onPointClick((dot) => onSelect(dot.code));
+
+  // A 3x phone screen would otherwise fill four times the pixels of 1.5x.
+  globe.renderer().setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
   const controls = globe.controls();
   controls.autoRotate = !prefersReducedMotion();
@@ -91,16 +104,29 @@ export function createGlobeRenderer(container, { onSelect }) {
       state.countries = countries;
       state.entities = new Map(entities.map((entity) => [entity.code, entity]));
       const overlay = disputed.map((feature) => ({ ...feature, properties: { ...feature.properties, disputed: true } }));
-      globe.polygonsData([...countries, ...overlay]).pointsData(dots);
+      const shapes = countries.toSorted((a, b) => geoArea(b) - geoArea(a)).concat(overlay);
+      globe.pointsData(dots);
+      cancelAnimationFrame(state.frame);
+      const addBatch = (shown) => {
+        globe.polygonsData(shapes.slice(0, shown));
+        if (shown < shapes.length) state.frame = requestAnimationFrame(() => addBatch(shown + SHAPES_PER_FRAME));
+      };
+      addBatch(SHAPES_PER_FRAME);
+    },
+    setLayer(layer) {
+      state.layer = layer;
+      globe.polygonCapColor(capColor).polygonStrokeColor(globe.polygonStrokeColor()).polygonLabel(label)
+        .pointColor(globe.pointColor());
     },
     select(code, centroid) {
       state.selected = code;
-      globe.polygonCapColor(capColor).polygonAltitude(globe.polygonAltitude())
+      globe.polygonCapColor(capColor).polygonStrokeColor(globe.polygonStrokeColor()).polygonAltitude(globe.polygonAltitude())
         .pointColor(globe.pointColor()).pointRadius(globe.pointRadius());
       if (code) controls.autoRotate = false;
       if (centroid) globe.pointOfView({ lat: centroid.lat, lng: centroid.lng, altitude: 1.9 }, prefersReducedMotion() ? 0 : 900);
     },
     destroy() {
+      cancelAnimationFrame(state.frame);
       observer.disconnect();
       globe._destructor();
       container.replaceChildren();

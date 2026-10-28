@@ -95,4 +95,10 @@ describe("CountryPanel", () => {
 
     expect(onClose).toHaveBeenCalledTimes(2);
   });
+
+  it("adds no recognition row for a fully recognized state, since only partial recognition needs saying", () => {
+    renderPanel();
+
+    expect(screen.queryByText("Recognition")).not.toBeInTheDocument();
+  });
 });
