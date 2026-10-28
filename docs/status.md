@@ -7,7 +7,7 @@ This records what has been verified and how, and what has not.
 | M1 | Every UN member clickable; `/country/FRA` deep links | **Met** | `npm run check:coverage` (198/198 selectable); e2e deep links FRA, XKX, GRL→DNK, ZZZ |
 | M1 | Panel opens in < 300 ms | **Met** | e2e measures 99–113 ms |
 | M2 | 198 files validate; every field has source and as-of | **Met** | Every publish validates each file against `contracts/v1` and aborts on any failure |
-| M2 | Daily workflow green 3 days running | **Not yet** | `daily-refresh.yml` is built and its cycle passes locally in production mode, but it needs Cloudflare Pages and R2 to run (README "Deployment") |
+| M2 | Daily workflow green 3 days running | **Not yet** | `daily-refresh.yml` is built and its cycle passes locally in production mode, but it needs Cloudflare Pages and the storage settings to run (README "Deployment") |
 | M3 | 20-country spot check against Wikipedia | **Pending** | `data:spot_check` is built and tested. Wikipedia answered 503 to every request on 2026-10-27, so rerun `bin/rails "data:spot_check[20]"` |
 | M4 | No tension item lacks a citation | **Met** | Every item carries `sourceUrl`; the contract requires it |
 | M4 | Layers render in < 500 ms | **Met** | 171–270 ms with real data, including the next frame in software WebGL |
@@ -26,7 +26,7 @@ This records what has been verified and how, and what has not.
 
 | Item | What to do |
 |---|---|
-| Cloudflare and R2 setup | See README "Deployment" |
+| Cloudflare Pages and storage settings | See README "Deployment" |
 | Disputed-area withdrawals | Review the list in `web/scripts/borders/disputed-overrides.js` |
 | Recognition notes | Review the wording in `backend/config/overrides.yml` |
 | REST Countries key | Rotate it if the conversation it was shared in is shared further |

@@ -51,6 +51,16 @@ RSpec.describe "bin/with-stored-database" do
       expect(marks_in(backups.first)).to eq(%w[today yesterday])
     end
 
+    it "keeps the storage keys from the command it runs" do
+      keys = {"AWS_ACCESS_KEY_ID" => "id", "AWS_SECRET_ACCESS_KEY" => "secret"}
+      report_keys = ["ruby", "-e", "print ENV.keys.grep(/\\AAWS_(ACCESS|SECRET)/).join(',')"]
+
+      stdout, _, status = run_with_store(report_keys, keys)
+
+      expect(status).to be_success
+      expect(stdout).to be_empty
+    end
+
     it "leaves the stored database untouched when the run fails" do
       before_bytes = stored_db.binread
 

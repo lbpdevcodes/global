@@ -18,8 +18,8 @@ The owner builds in Rails and wants v1 small, but without a rewrite when require
   through configuration, with no rewrite. globe.gl sits behind our own interface. The reader is
   served as static files from Cloudflare Pages, so no server runs at read time.
 - **Engine:** Rails 8.1 on SQLite. In v1 it is not a server. A scheduled GitHub Actions job runs
-  rake tasks through `bin/with-stored-database`, which fetches the database file from R2 and
-  uploads it, with a dated backup, only after a successful run.
+  rake tasks through `bin/with-stored-database`, which fetches the database file from an
+  S3-compatible bucket and uploads it, with a dated backup, only after a successful run.
 - **Seam:** a versioned JSON contract (ADR 0002). The reader knows nothing but the published files.
 
 ## Alternatives considered
@@ -34,7 +34,10 @@ The owner builds in Rails and wants v1 small, but without a rewrite when require
 
 - There are two toolchains (Ruby, Node). The contract keeps them independent.
 - SQLite has a single writer, which suits a daily batch. Later, a single Kamal-deployed VPS with
-  Litestream backups to R2 adds a web role.
+  Litestream backups to the same bucket adds a web role.
+- 2026-10-28: storage moved from Cloudflare R2 to the owner's existing Linode Object Storage
+  bucket, under its own folder (`s3://lbpdev/global/prod`). The scripts use the aws CLI's
+  standard settings, so any S3-compatible store works.
 - To keep a later move to Postgres a schema tweak, use JSON columns and avoid Postgres-only
   features.
 - `public/_redirects` sends `/country/*` to `/__spa-fallback`, without `.html`, because Pages 308s

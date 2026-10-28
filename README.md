@@ -72,7 +72,7 @@ cd web && node scripts/build-borders.js --simplify=12%
 
 Two workflows deploy to Cloudflare Pages, and both share one concurrency group:
 - **`Daily refresh`** (05:15 UTC) refreshes the sources, publishes and archives a snapshot to
-  R2, then builds and deploys.
+  object storage, then builds and deploys.
 - **`Deploy web`** ships code that passed `CI web`, using the latest snapshot.
 
 Both stay skipped until these are set in the GitHub repository:
@@ -80,18 +80,23 @@ Both stay skipped until these are set in the GitHub repository:
 | Kind | Name | What |
 |---|---|---|
 | Variable | `PAGES_PROJECT` | Cloudflare Pages project name |
-| Variable | `R2_BUCKET`, `R2_ENDPOINT` | R2 bucket and `https://<account>.r2.cloudflarestorage.com` |
+| Variable | `STORAGE_URL` | `s3://lbpdev/global/prod`: the folder holding the database, backups and snapshots |
+| Variable | `STORAGE_ENDPOINT`, `STORAGE_REGION` | `https://us-mia-1.linodeobjects.com` and `us-mia-1` |
 | Secret | `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` | Pages deploys |
-| Secret | `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` | R2 access key for the database, snapshots and backups |
+| Secret | `STORAGE_ACCESS_KEY_ID`, `STORAGE_SECRET_ACCESS_KEY` | Object storage access key |
 | Secret | `RAILS_MASTER_KEY` | Contents of `backend/config/master.key` (decrypts the REST Countries key) |
 | Secret | `HEALTHCHECK_URL` | Optional dead-man's-switch ping, e.g. healthchecks.io |
+
+Storage is any S3-compatible bucket; v1 uses Linode Object Storage. The endpoint is the bare
+origin with no path, and the project's folder goes in `STORAGE_URL`, because a path on the
+endpoint breaks the listings that `aws s3 sync` makes.
 
 **First run:** trigger `Daily refresh` by hand with "start from an empty database" ticked. Every
 later run refuses to start if the stored database cannot be fetched.
 
 **Alerts:** failed sources and stale fields open a GitHub issue.
 
-**Rollback:** sync an older `snapshots/<id>/data/v1` over `latest/data/v1` in R2, then re-run
+**Rollback:** sync an older `snapshots/<id>/data/v1` over `latest/data/v1` in the bucket, then re-run
 `Deploy web`.
 
 Borders: Made with Natural Earth.

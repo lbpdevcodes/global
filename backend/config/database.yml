@@ -28,6 +28,6 @@ test:
 # ensure the database is located in a persisted volume.
 production:
   <<: *default
-  # bin/with-stored-database fetches this file from R2 before a run and uploads
+  # bin/with-stored-database fetches this file from object storage before a run and uploads
   # it, with a dated backup, only after a successful one.
   database: <%= ENV.fetch("ENGINE_DATABASE", "storage/engine.sqlite3") %>

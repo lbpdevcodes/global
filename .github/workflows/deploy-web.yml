@@ -1,7 +1,7 @@
 name: Deploy web
 
 # Deploys only commits that passed CI web, with the latest published snapshot.
-# Skipped until Pages and R2 are configured (variables PAGES_PROJECT, R2_BUCKET).
+# Skipped until Pages and storage are configured (variables PAGES_PROJECT, STORAGE_URL).
 on:
   workflow_run:
     workflows: [CI web]
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   deploy:
     if: >-
-      vars.PAGES_PROJECT != '' && vars.R2_BUCKET != '' &&
+      vars.PAGES_PROJECT != '' && vars.STORAGE_URL != '' &&
       (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     defaults:
@@ -36,10 +36,12 @@ jobs:
       - run: npm ci
       - name: Fetch the latest snapshot
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: auto
-        run: aws s3 sync "s3://${{ vars.R2_BUCKET }}/latest/data/v1" data/v1 --endpoint-url "${{ vars.R2_ENDPOINT }}" --only-show-errors
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORAGE_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORAGE_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL: ${{ vars.STORAGE_ENDPOINT }}
+          AWS_DEFAULT_REGION: ${{ vars.STORAGE_REGION }}
+          STORAGE_URL: ${{ vars.STORAGE_URL }}
+        run: aws s3 sync "$STORAGE_URL/latest/data/v1" data/v1 --only-show-errors
       - run: npm run check:coverage
       - run: npm run build
       - run: npx wrangler pages deploy build/client --project-name="$PAGES_PROJECT" --branch=main

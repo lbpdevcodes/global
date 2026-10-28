@@ -1,8 +1,9 @@
 name: Daily refresh
 
 # Refreshes every source, publishes a snapshot and deploys the reader.
-# Skipped until R2 and Pages are configured (repository variables R2_BUCKET,
-# R2_ENDPOINT, PAGES_PROJECT; secrets in README "Deployment").
+# Skipped until storage and Pages are configured (repository variables
+# STORAGE_URL, STORAGE_ENDPOINT, STORAGE_REGION, PAGES_PROJECT; secrets in
+# README "Deployment"). Only the steps that read or write storage get its keys.
 on:
   schedule:
     - cron: "15 5 * * *"
@@ -24,16 +25,15 @@ permissions:
 env:
   RAILS_ENV: production
   RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-  DATABASE_STORE: s3://${{ vars.R2_BUCKET }}/engine
-  R2_ENDPOINT: ${{ vars.R2_ENDPOINT }}
-  AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-  AWS_DEFAULT_REGION: auto
+  STORAGE_URL: ${{ vars.STORAGE_URL }}
+  DATABASE_STORE: ${{ vars.STORAGE_URL }}/engine
+  AWS_ENDPOINT_URL: ${{ vars.STORAGE_ENDPOINT }}
+  AWS_DEFAULT_REGION: ${{ vars.STORAGE_REGION }}
   ALLOW_EMPTY_DATABASE: ${{ inputs.allow_empty_database && '1' || '' }}
 
 jobs:
   refresh:
-    if: vars.R2_BUCKET != '' && vars.PAGES_PROJECT != ''
+    if: vars.STORAGE_URL != '' && vars.PAGES_PROJECT != ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -49,14 +49,20 @@ jobs:
 
       - name: Refresh sources and publish the snapshot
         working-directory: backend
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORAGE_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORAGE_SECRET_ACCESS_KEY }}
         run: bin/with-stored-database bin/rails db:prepare db:seed data:refresh data:publish
 
       - name: Archive the snapshot
         working-directory: web
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORAGE_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORAGE_SECRET_ACCESS_KEY }}
         run: |
           id=$(jq -r .snapshotId data/v1/manifest.json)
-          aws s3 sync data/v1 "s3://${{ vars.R2_BUCKET }}/snapshots/$id/data/v1" --endpoint-url "$R2_ENDPOINT" --only-show-errors
-          aws s3 sync data/v1 "s3://${{ vars.R2_BUCKET }}/latest/data/v1" --endpoint-url "$R2_ENDPOINT" --delete --only-show-errors
+          aws s3 sync data/v1 "$STORAGE_URL/snapshots/$id/data/v1" --only-show-errors
+          aws s3 sync data/v1 "$STORAGE_URL/latest/data/v1" --delete --only-show-errors
 
       - name: Build and deploy the reader
         working-directory: web

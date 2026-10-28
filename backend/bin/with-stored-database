@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # Runs a command against the engine database kept in DATABASE_STORE:
 #
-#   DATABASE_STORE=s3://bucket/prefix   R2, through the aws CLI and R2_ENDPOINT
+#   DATABASE_STORE=s3://bucket/prefix   any S3-compatible store, through the aws CLI
+#                                       (AWS_ENDPOINT_URL, AWS_DEFAULT_REGION and keys)
 #   DATABASE_STORE=/some/directory      a local directory (development, tests)
 #
 # The database is fetched first, and uploaded back with a dated backup only
 # when the command succeeds. A failed run leaves the stored copy untouched.
+# The command itself never sees the storage keys.
 set -euo pipefail
 
 store="${DATABASE_STORE:?DATABASE_STORE must be set}"
@@ -14,7 +16,7 @@ export ENGINE_DATABASE="$database"
 
 fetch() { # fetch <key> <destination>
   if [[ "$store" == s3://* ]]; then
-    aws s3 cp --only-show-errors --endpoint-url "$R2_ENDPOINT" "$store/$1" "$2"
+    aws s3 cp --only-show-errors "$store/$1" "$2"
   else
     cp "$store/$1" "$2"
   fi
@@ -22,7 +24,7 @@ fetch() { # fetch <key> <destination>
 
 push() { # push <source> <key>
   if [[ "$store" == s3://* ]]; then
-    aws s3 cp --only-show-errors --endpoint-url "$R2_ENDPOINT" "$1" "$store/$2"
+    aws s3 cp --only-show-errors "$1" "$store/$2"
   else
     mkdir -p "$(dirname "$store/$2")"
     cp "$1" "$store/$2"
@@ -39,7 +41,7 @@ if ! fetch engine.sqlite3 "$database"; then
   echo "Starting from an empty database (ALLOW_EMPTY_DATABASE=1)." >&2
 fi
 
-"$@"
+env -u AWS_ACCESS_KEY_ID -u AWS_SECRET_ACCESS_KEY "$@"
 
 workdir="$(mktemp -d)"
 trap 'rm -rf "$workdir"' EXIT
