@@ -18,14 +18,22 @@
   about 40 others are `territory` rows in the index with a `parent`. Clicking one, or opening
   `/country/GRL`, centers the globe on it and opens the parent's profile with a note.
 - **Disputed and breakaway areas** come from Natural Earth's breakaway/disputed layer. They are
-  drawn as a hatched overlay showing Natural Earth's own note ("Admin. by X; Claimed by Y") as a
-  sourced, dated statement.
+  drawn as a translucent amber overlay with an outline, and hovering shows Natural Earth's own
+  note ("Admin. by X; Claimed by Y") labeled "Natural Earth, 2022". A hatch pattern was tried,
+  but globe.gl's polygon caps have no texture coordinates to map it onto. A click on an overlay
+  selects the country underneath it.
 
-## Open items (decide in M1)
+## Resolved in M1
 
-- **Unprofiled breakaway features in the admin-0 layer** are N. Cyprus (CYN), Somaliland (SOL),
-  Siachen Glacier (KAS) and Antarctica (ATA). They need an explicit index treatment: selectable
-  with a note pointing to the claimant's profile, or not selectable.
-- **Natural Earth v5.1.2 dates from May 2022.** Its disputed layer still includes Artsakh, and
-  its Donetsk and Luhansk outlines predate later changes. Choose between pinning a newer upstream
-  commit and keeping reviewed local overrides.
+- **Unprofiled breakaway features** N. Cyprus (CYN), Somaliland (SOL), Siachen Glacier (KAS) and
+  Antarctica (ATA) are **not selectable**. Their disputed-area overlays still explain them.
+  `web/scripts/borders/coverage.js` lists them, and `npm run check:coverage` fails on any border
+  code that is neither indexed nor on that list.
+- **The Natural Earth 2022 vintage:** upstream has not changed these files since May 2022, which
+  was checked on 2026-10-27. Reviewed local overrides in
+  `web/scripts/borders/disputed-overrides.js` withdraw these areas, each with its reason:
+  - Artsakh, dissolved in January 2024;
+  - the Donetsk and Luhansk "People's Republics", whose 2022 outlines and "Self admin." notes
+    predate later changes.
+
+  **The owner should review this list.**

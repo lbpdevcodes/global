@@ -4,6 +4,7 @@
 import { writeFile } from "node:fs/promises";
 import { gzipSync } from "node:zlib";
 import mapshaper from "mapshaper";
+import { applyDisputedOverrides } from "./borders/disputed-overrides.js";
 import { featureCode } from "./borders/feature-code.js";
 
 const NATURAL_EARTH = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson";
@@ -24,11 +25,12 @@ function keepOnly(collection, propertiesOf) {
 }
 
 const countries = keepOnly(await download("ne_50m_admin_0_countries"), (p) => ({ code: featureCode(p), name: p.NAME }));
-const disputed = keepOnly(await download("ne_50m_admin_0_breakaway_disputed_areas"), (p) => ({
+const reported = keepOnly(await download("ne_50m_admin_0_breakaway_disputed_areas"), (p) => ({
   id: p.BRK_A3,
   name: p.BRK_NAME,
   note: p.NOTE_BRK,
 }));
+const disputed = { ...reported, features: applyDisputedOverrides(reported.features) };
 
 const output = await mapshaper.applyCommands(
   `-i countries.json disputed.json combine-files -simplify ${simplify} keep-shapes ` +

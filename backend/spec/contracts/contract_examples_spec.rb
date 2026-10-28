@@ -54,4 +54,15 @@ RSpec.describe "Published contract v1" do
       expect(errors_for.call("index", index).join).to match(%r{/entities/\d+/parent})
     end
   end
+
+  describe "fields.json" do
+    it "describes exactly the sourced fields of the country schema" do
+      schema = JSON.parse(contracts.join("v1/country.schema.json").read)
+      sections = %w[header leadership government people economy politics]
+      schema_keys = sections.flat_map { |s| schema.dig("properties", s, "properties").keys.map { "#{s}.#{it}" } }
+      field_keys = JSON.parse(contracts.join("v1/fields.json").read)["fields"].pluck("key")
+
+      expect(field_keys).to match_array(schema_keys)
+    end
+  end
 end

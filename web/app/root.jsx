@@ -7,11 +7,10 @@ export function Layout({ children }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Geopolitical Globe</title>
         <Meta />
         <Links />
       </head>
-      <body className="bg-black text-neutral-100">
+      <body className="bg-[#05070d] font-sans text-[15px] text-neutral-100 antialiased">
         {children}
         <ScrollRestoration />
         <Scripts />

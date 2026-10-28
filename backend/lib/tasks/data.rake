@@ -7,9 +7,9 @@ namespace :data do
     summary.failures.each { |source, reason| warn "#{source} FAILED: #{reason}" }
   end
 
-  desc "Build, validate and write the snapshot to OUT/data/v1 (default: ../web/public)"
+  desc "Build, validate and write the snapshot to OUT/data/v1 (default: ../web)"
   task publish: :environment do
-    out = ENV.fetch("OUT", Rails.root.join("../web/public").to_s)
+    out = ENV.fetch("OUT", Rails.root.join("../web").to_s)
     files = Snapshot::Builder.new(generated_at: Time.current).files
     Publisher.new.publish(files, to: out)
     puts "Published #{files.size} files to #{File.join(out, "data/v1")}"

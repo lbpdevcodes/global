@@ -28,11 +28,24 @@ bundle exec standardrb     # lint
 cd web
 npm ci
 npx playwright install chromium   # once, for end-to-end tests
-npm run dev                # http://localhost:5173
+npm run dev                # http://localhost:5173, serving the snapshot in web/data/v1
 npm test                   # unit and contract tests (Vitest)
 npm run test:e2e           # builds, serves through Cloudflare's local Pages runtime, runs Playwright
 npm run lint
 ```
+
+### Data for the reader
+
+The reader serves the snapshot in `web/data/v1` (git-ignored), written by the backend:
+
+```sh
+cd backend
+bin/rails db:seed data:refresh data:publish   # REST Countries key in credentials
+cd ../web && npm run check:coverage            # every profiled country is clickable
+```
+
+`SNAPSHOT_DIR` points the reader at a different snapshot. The end-to-end tests use the
+contract's example snapshot this way (`SNAPSHOT_DIR=../contracts/examples`).
 
 ### Rebuilding borders
 

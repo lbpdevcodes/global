@@ -8,11 +8,15 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   use: { baseURL: `http://localhost:${port}` },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
-  // Serve the production build through Cloudflare's local Pages runtime so
-  // _redirects and the SPA fallback behave as they do when deployed.
+  projects: [
+    { name: "desktop", use: { ...devices["Desktop Chrome"] }, testIgnore: /mobile/ },
+    { name: "mobile", use: { ...devices["Pixel 7"] }, testMatch: /mobile/ },
+  ],
+  // Build against the contract's example snapshot and serve it through
+  // Cloudflare's local Pages runtime, so _redirects and the SPA fallback
+  // behave as they do when deployed.
   webServer: {
-    command: `npm run build && npx wrangler pages dev build/client --port ${port}`,
+    command: `SNAPSHOT_DIR=../contracts/examples npm run build && npx wrangler pages dev build/client --port ${port} --compatibility-date=2026-10-23`,
     url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
