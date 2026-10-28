@@ -32,6 +32,7 @@ npm run dev                # http://localhost:5173, serving the snapshot in web/
 npm test                   # unit and contract tests (Vitest)
 npm run test:e2e           # builds, serves through Cloudflare's local Pages runtime, runs Playwright
 npm run lint
+npm run lighthouse -- <url> [<url>...]   # performance and accessibility >= 90 (median of 3, desktop preset)
 ```
 
 ### Data for the reader
@@ -43,6 +44,18 @@ cd backend
 bin/rails db:seed data:refresh data:publish   # REST Countries key in credentials
 cd ../web && npm run check:coverage            # every profiled country is clickable
 ```
+
+The other backend tasks:
+
+| Task | What it does |
+|---|---|
+| `bin/rails data:freshness` | Lists fields past their refresh window, writes `tmp/freshness.md`, and fails if any are stale |
+| `bin/rails data:changes` | Lists leadership and ruling-party changes from the last day for a person to review |
+| `bin/rails "data:spot_check[20]"` | Compares 20 random profiles' leaders and ruling party with Wikipedia infoboxes |
+
+Sources, and why some candidates were not used, are recorded in `docs/adr/0006`–`0008`.
+Editorial values with no structured source live in `backend/config/overrides.yml` and go
+stale until re-reviewed.
 
 `SNAPSHOT_DIR` points the reader at a different snapshot. The end-to-end tests use the
 contract's example snapshot this way (`SNAPSHOT_DIR=../contracts/examples`).
