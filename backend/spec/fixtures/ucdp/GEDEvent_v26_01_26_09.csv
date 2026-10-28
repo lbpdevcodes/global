@@ -1,0 +1,11 @@
+id,conflict_new_id,conflict_name,type_of_violence,side_a,side_b,country,date_start,best
+1,16905,"Iran - Israel, United States of America",1,Government of Iran,"Government of Israel, Government of United States of America",Iran,2026-03-01 00:00:00.000,1500
+2,16905,"Iran - Israel, United States of America",1,Government of Iran,"Government of Israel, Government of United States of America",Israel,2026-03-02 00:00:00.000,470
+3,16905,"Iran - Israel, United States of America",1,Government of Iran,"Government of Israel, Government of United States of America",Sri Lanka,2026-03-04 00:00:00.000,30
+5,338,Iran: Government,1,Government of Iran,PJAK,Iran,2026-03-10 00:00:00.000,10
+4,338,Iran: Government,1,Government of Iran,Jaish al-Adl,Iran,2026-02-11 00:00:00.000,20
+6,14609,Iran - Israel,1,Government of Iran,Government of Israel,Lebanon,2026-05-28 00:00:00.000,3
+8,77,XXX645,1,XXX645,XXX645,Iraq,2026-03-05 00:00:00.000,90
+7,77,XXX645,1,Government of Iraq,"Government of Israel, Government of United States of America",Iraq,2026-03-03 00:00:00.000,20
+9,150,XXX652,1,XXX652,XXX652,Syria,2026-04-01 00:00:00.000,123
+10,600,Nepal: Civilians,3,Government of Nepal,Civilians,Nepal,2026-06-01 00:00:00.000,300

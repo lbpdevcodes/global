@@ -57,6 +57,6 @@ RSpec.describe Snapshot::CountryProfile do
     observe(france, "tensions.ucdp", [item], period: "2025", source_key: "ucdp", source_url: "https://ucdp.uu.se/downloads/")
 
     expect(profile.dig("tensions", "items")).to eq([item.merge("asOf" => "2026-10-27")])
-    expect(profile.dig("meta", "sources")).to include("name" => "UCDP/PRIO Armed Conflict Dataset", "url" => "https://ucdp.uu.se/downloads/")
+    expect(profile.dig("meta", "sources")).to include("name" => "UCDP Armed Conflict and Candidate Events datasets", "url" => "https://ucdp.uu.se/downloads/")
   end
 end

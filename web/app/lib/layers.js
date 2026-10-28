@@ -54,7 +54,7 @@ export const LAYERS = [
   {
     id: "conflictStatus",
     label: "Armed conflict",
-    note: "UCDP, latest year",
+    note: "UCDP; this year's figures are preliminary",
     classes: [
       { label: "Active armed conflict", color: "#d03b3b", test: (value) => value === "active_conflict" },
       { label: "Tension or dispute", color: "#ec835a", test: (value) => value === "tension" },

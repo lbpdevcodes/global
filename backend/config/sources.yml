@@ -27,7 +27,7 @@ shared:
     access: Reviewed values in config/overrides.yml, each linking its own source
     terms_checked_on: 2026-10-27
   ucdp:
-    name: UCDP/PRIO Armed Conflict Dataset
+    name: UCDP Armed Conflict and Candidate Events datasets
     url: https://ucdp.uu.se/downloads/
-    access: Keyless dataset download; CC BY 4.0 (the UCDP API itself needs a token)
-    terms_checked_on: 2026-10-27
+    access: Keyless dataset downloads; CC BY 4.0 (the UCDP API itself needs a token)
+    terms_checked_on: 2026-10-28
