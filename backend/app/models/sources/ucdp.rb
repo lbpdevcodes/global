@@ -6,13 +6,15 @@ module Sources
   # newest release on UCDP's downloads page: every conflict active in the
   # dataset's latest year, listed under each country where it is fought.
   # Every known country gets a list, so an empty one confirms "none recorded".
+  # Place names are matched against the names known when the source runs, so
+  # the ones REST Countries records earlier in the same refresh count.
   class Ucdp
     DOWNLOADS = "https://ucdp.uu.se/downloads/"
     BYTE_ORDER_MARK = "﻿"
     INTENSITY = {"1" => "Minor armed conflict (25–999 battle-related deaths in %s)",
                  "2" => "War (1,000+ battle-related deaths in %s)"}
 
-    def initialize(fetcher: HttpFetcher.new, names: EntityNames.load)
+    def initialize(fetcher: HttpFetcher.new, names: nil)
       @fetcher = fetcher
       @names = names
     end
@@ -26,7 +28,9 @@ module Sources
 
     private
 
-    attr_reader :fetcher, :names
+    attr_reader :fetcher
+
+    def names = @names ||= EntityNames.load
 
     def latest_year_rows
       rows = CSV.parse(dataset_csv, headers: true).map(&:to_h)

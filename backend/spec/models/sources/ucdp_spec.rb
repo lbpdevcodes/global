@@ -42,6 +42,16 @@ RSpec.describe Sources::Ucdp do
     expect(observed.map(&:period).uniq).to eq(["2025"])
   end
 
+  it "matches places by names that earlier sources record in the same refresh" do
+    myanmar = create(:entity, code: "MMR", name: "Burma")
+    source = Sources::Ucdp.new(fetcher: fetcher)
+    observe(myanmar, "index.aliases", ["Myanmar"])
+
+    conflicts = source.observations.find { it.entity_code == "MMR" }.value
+
+    expect(conflicts).not_to be_empty
+  end
+
   it "lists each actor on a side as its own party" do
     myanmar_war = items("MMR").find { it["sourceUrl"].end_with?("/222") }
 
