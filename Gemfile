@@ -54,6 +54,7 @@ group :development, :test do
 
   # Ruby style guide, linter, and formatter [https://github.com/standardrb/standard]
   gem "standard", require: false
+  gem "standard-rails", require: false
 
   # Behaviour-driven testing framework [https://github.com/rspec/rspec-rails]
   gem "rspec-rails"
