@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_28_020755) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_28_021738) do
   create_table "entities", force: :cascade do |t|
     t.string "code", null: false
     t.string "iso2"
@@ -24,5 +24,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_020755) do
     t.index ["parent_id"], name: "index_entities_on_parent_id"
   end
 
+  create_table "observations", force: :cascade do |t|
+    t.integer "entity_id", null: false
+    t.string "field_key", null: false
+    t.json "value"
+    t.string "source_key", null: false
+    t.string "source_url", null: false
+    t.string "period"
+    t.string "value_hash", null: false
+    t.datetime "first_seen_at", null: false
+    t.datetime "last_confirmed_at", null: false
+    t.index ["entity_id", "field_key", "first_seen_at"], name: "idx_on_entity_id_field_key_first_seen_at_3c295c49ec"
+    t.index ["entity_id"], name: "index_observations_on_entity_id"
+  end
+
   add_foreign_key "entities", "entities", column: "parent_id"
+  add_foreign_key "observations", "entities"
 end

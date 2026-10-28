@@ -7,3 +7,4 @@ web/.react-router/
 web/test-results/
 web/playwright-report/
 web/.wrangler/
+web/public/data/

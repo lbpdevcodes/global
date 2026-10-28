@@ -4,87 +4,262 @@
   "title": "Entity index",
   "description": "Every selectable entity, loaded once. Search and map layers need all values before any click.",
   "type": "object",
-  "required": ["snapshotId", "entities"],
+  "required": [
+    "snapshotId",
+    "entities"
+  ],
   "additionalProperties": false,
   "properties": {
-    "snapshotId": { "type": "string", "minLength": 1 },
-    "entities": { "type": "array", "items": { "$ref": "#/$defs/entity" } }
+    "snapshotId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entity"
+      }
+    }
   },
   "$defs": {
-    "code": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
     "entity": {
       "type": "object",
-      "required": ["code", "name", "kind", "parent", "aliases", "centroid", "recognition", "layers"],
+      "required": [
+        "code",
+        "name",
+        "kind",
+        "parent",
+        "aliases",
+        "centroid",
+        "recognition",
+        "layers",
+        "note"
+      ],
       "additionalProperties": false,
       "properties": {
-        "code": { "$ref": "#/$defs/code" },
-        "name": { "type": "string", "minLength": 1 },
-        "kind": { "enum": ["sovereign", "partially_recognized", "territory"] },
-        "parent": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/code" }] },
-        "aliases": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "code": {
+          "$ref": "#/$defs/code"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "sovereign",
+            "partially_recognized",
+            "territory"
+          ]
+        },
+        "parent": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/code"
+            }
+          ]
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
         "centroid": {
           "oneOf": [
-            { "type": "null" },
+            {
+              "type": "null"
+            },
             {
               "type": "object",
-              "required": ["lat", "lng"],
+              "required": [
+                "lat",
+                "lng"
+              ],
               "additionalProperties": false,
               "properties": {
-                "lat": { "type": "number", "minimum": -90, "maximum": 90 },
-                "lng": { "type": "number", "minimum": -180, "maximum": 180 }
+                "lat": {
+                  "type": "number",
+                  "minimum": -90,
+                  "maximum": 90
+                },
+                "lng": {
+                  "type": "number",
+                  "minimum": -180,
+                  "maximum": 180
+                }
               }
             }
           ]
         },
         "recognition": {
           "oneOf": [
-            { "type": "null" },
+            {
+              "type": "null"
+            },
             {
               "type": "object",
-              "required": ["status", "note"],
+              "required": [
+                "status",
+                "note"
+              ],
               "additionalProperties": false,
               "properties": {
-                "status": { "enum": ["full", "partial", "disputed"] },
-                "note": { "type": ["string", "null"] }
+                "status": {
+                  "enum": [
+                    "full",
+                    "partial",
+                    "disputed"
+                  ]
+                },
+                "note": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
               }
             }
           ]
         },
         "layers": {
           "oneOf": [
-            { "type": "null" },
+            {
+              "type": "null"
+            },
             {
               "type": "object",
-              "required": ["governmentType", "democracyScore", "population", "conflictStatus"],
+              "required": [
+                "governmentType",
+                "democracyScore",
+                "population",
+                "conflictStatus"
+              ],
               "additionalProperties": false,
               "properties": {
-                "governmentType": { "$ref": "#/$defs/layerValue", "properties": { "value": { "type": "string" } } },
-                "democracyScore": { "$ref": "#/$defs/layerValue", "properties": { "value": { "type": "number" } } },
-                "population": { "$ref": "#/$defs/layerValue", "properties": { "value": { "type": "number" } } },
+                "governmentType": {
+                  "$ref": "#/$defs/layerValue",
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "democracyScore": {
+                  "$ref": "#/$defs/layerValue",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "population": {
+                  "$ref": "#/$defs/layerValue",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    }
+                  }
+                },
                 "conflictStatus": {
                   "$ref": "#/$defs/layerValue",
-                  "properties": { "value": { "enum": ["none", "tension", "active_conflict"] } }
+                  "properties": {
+                    "value": {
+                      "enum": [
+                        "none",
+                        "tension",
+                        "active_conflict"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "note": {
+          "description": "Sourced status line shown for a territory, e.g. 'Autonomous region of Denmark'.",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "required": [
+                "value",
+                "source",
+                "asOf"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "asOf": {
+                  "type": "string",
+                  "format": "date"
                 }
               }
             }
           ]
         }
       },
-      "if": { "properties": { "kind": { "const": "territory" } } },
-      "then": { "properties": { "parent": { "$ref": "#/$defs/code" }, "layers": { "type": "null" } } },
-      "else": { "properties": { "parent": { "type": "null" } } }
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "territory"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "parent": {
+            "$ref": "#/$defs/code"
+          },
+          "layers": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "parent": {
+            "type": "null"
+          }
+        }
+      }
     },
     "layerValue": {
       "description": "A layer value, or null when unknown. asOf is when it was last confirmed from its source.",
       "oneOf": [
-        { "type": "null" },
+        {
+          "type": "null"
+        },
         {
           "type": "object",
-          "required": ["value", "asOf"],
+          "required": [
+            "value",
+            "asOf"
+          ],
           "additionalProperties": false,
           "properties": {
             "value": true,
-            "asOf": { "type": "string", "format": "date" }
+            "asOf": {
+              "type": "string",
+              "format": "date"
+            }
           }
         }
       ]

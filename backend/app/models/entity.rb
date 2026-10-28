@@ -2,6 +2,7 @@ class Entity < ApplicationRecord
   enum :kind, %w[sovereign partially_recognized territory].index_by(&:itself), validate: true
 
   belongs_to :parent, class_name: "Entity", optional: true
+  has_many :observations, dependent: :restrict_with_exception
 
   scope :profiled, -> { where.not(kind: :territory) }
 

@@ -1,0 +1,8 @@
+# Every source the engine reads: shown in each profile's sources list, and the
+# record of when its terms were last checked (docs/adr/0005-freshness.md).
+shared:
+  rest_countries:
+    name: REST Countries
+    url: https://restcountries.com/
+    access: API key (free plan), sent as a bearer token
+    terms_checked_on: 2026-10-27
