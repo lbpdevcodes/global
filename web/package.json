@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "react-router dev",
     "build": "react-router build",
+    "fetch:snapshot": "scripts/fetch-snapshot.sh",
+    "build:pages": "npm run fetch:snapshot && npm run check:coverage && npm run build",
     "preview": "wrangler pages dev build/client --port 4173 --compatibility-date=2026-10-23",
     "test": "vitest run",
     "test:watch": "vitest",

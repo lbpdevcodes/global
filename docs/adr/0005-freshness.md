@@ -12,7 +12,7 @@
   `config/fields.yml`: daily 1, weekly 7, monthly 31, yearly 366. Stale fields show
   "may be outdated".
 - **Alert** when any field is stale. `bin/rails data:freshness` writes `tmp/freshness.md` and
-  exits non-zero, and the daily workflow opens a GitHub issue. Alerting at the first stale day
+  exits non-zero, and the daily refresh opens a GitHub issue. Alerting at the first stale day
   leaves a week to fix it within the PRD's "never more than 7 days stale" bar.
 - **Editorial overrides** are dated by their review (ADR 0006), so they go stale and prompt a
   re-review.

@@ -1,0 +1,126 @@
+#!/usr/bin/env bash
+# The daily data refresh, run on the owner's Mac by launchd (ADR 0010):
+#   1. refresh every source and publish a snapshot, with the database kept in
+#      object storage (backend/bin/with-stored-database);
+#   2. check every country is still selectable, archive the snapshot, and make
+#      it the public latest one that Cloudflare's build downloads;
+#   3. trigger the Cloudflare Pages rebuild, open GitHub issues for anything to
+#      review, and ping the heartbeat.
+# Secrets come from 1Password through `op run`, and each command gets only the
+# ones it needs.
+#
+#   bin/refresh [--update] [--allow-empty] [--skip-deploy] [--skip-alerts]
+#
+#   --update       first move this checkout to origin/main and run that version
+#                  (the scheduled job; refused in a checkout that is on a branch)
+#   --allow-empty  first run only: start from an empty database
+#   --skip-deploy  don't trigger the Cloudflare rebuild
+#   --skip-alerts  don't open GitHub issues or ping the heartbeat
+set -euo pipefail
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+if [[ "${1:-}" == "--update" ]]; then
+  shift
+  if git -C "$root" symbolic-ref -q HEAD > /dev/null; then
+    echo "--update moves this checkout to origin/main, so it only runs in a detached deploy checkout." >&2
+    exit 2
+  fi
+  git -C "$root" fetch --quiet origin main
+  git -C "$root" checkout --quiet --detach --force origin/main
+  exec "$root/bin/refresh" "$@"
+fi
+
+allow_empty="" skip_deploy="" skip_alerts=""
+for option in "$@"; do
+  case "$option" in
+    --allow-empty) allow_empty=1 ;;
+    --skip-deploy) skip_deploy=1 ;;
+    --skip-alerts) skip_alerts=1 ;;
+    *) echo "Unknown option: $option" >&2; exit 2 ;;
+  esac
+done
+
+set -a
+source "$root/deploy/settings.env"
+set +a
+export RAILS_ENV=production DATABASE_STORE="$STORAGE_URL/engine" ALLOW_EMPTY_DATABASE="$allow_empty"
+if [[ -z "${OP_SERVICE_ACCOUNT_TOKEN:-}" ]]; then
+  OP_SERVICE_ACCOUNT_TOKEN="$(security find-generic-password -a "$(id -un)" -s op-service-account-token -w)" ||
+    { echo "No 1Password token: set OP_SERVICE_ACCOUNT_TOKEN or add it to the Keychain (README)." >&2; exit 1; }
+  export OP_SERVICE_ACCOUNT_TOKEN
+fi
+
+lock="${TMPDIR:-/tmp}/global-refresh.lock"
+mkdir "$lock" 2> /dev/null || { echo "Another refresh is running (remove $lock if not)." >&2; exit 1; }
+work="$(mktemp -d)"
+step="starting"
+
+alert() { # alert <title> <body file>
+  [[ -n "$skip_alerts" ]] || gh issue create --repo "$GITHUB_REPO" --title "Daily refresh $(date -u +%F): $1" --body-file "$2"
+}
+finish() { # one EXIT trap: subshells reset it, so a failure is reported once
+  local status=$?
+  if ((status != 0)); then
+    printf 'bin/refresh stopped with status %s while %s.\n\nThe log is ~/Library/Logs/global/refresh.log on the Mac.\n' \
+      "$status" "$step" > "$work/failure.md"
+    alert "failed" "$work/failure.md" || true
+  fi
+  rm -rf "$work"
+  rmdir "$lock"
+}
+trap finish EXIT
+
+with_secrets() { # with_secrets <env name>... -- <command>
+  local files=()
+  while [[ "$1" != "--" ]]; do files+=(--env-file "$root/deploy/$1.env"); shift; done
+  shift
+  op run "${files[@]}" -- "$@"
+}
+
+snapshot_id() { node -p "require('$root/web/data/v1/manifest.json').snapshotId"; }
+
+step="installing dependencies"
+(cd "$root/backend" && bundle install --quiet)
+(cd "$root/web" && npm ci --silent)
+
+step="refreshing the sources"
+(cd "$root/backend" && with_secrets storage rails -- \
+  bin/with-stored-database bin/rails db:prepare db:seed data:refresh data:publish)
+
+step="checking every country is selectable"
+(cd "$root/web" && npm run --silent check:coverage)
+
+step="archiving the snapshot"
+id="$(snapshot_id)"
+COPYFILE_DISABLE=1 tar --no-xattrs -czf "$work/data-v1.tar.gz" -C "$root/web/data" v1
+with_secrets storage -- aws s3 cp --only-show-errors "$work/data-v1.tar.gz" "$STORAGE_URL/snapshots/$id/data-v1.tar.gz"
+with_secrets storage -- aws s3 cp --only-show-errors --acl public-read "$work/data-v1.tar.gz" "$STORAGE_URL/latest/data-v1.tar.gz"
+
+step="checking the public snapshot"
+(cd "$root/web" && npm run --silent fetch:snapshot)
+[[ "$(snapshot_id)" == "$id" ]] || { echo "The public snapshot is not $id." >&2; false; }
+
+if [[ -z "$skip_deploy" ]]; then
+  step="triggering the Cloudflare rebuild"
+  hook="$(op read op://LBPDEV/Global/deploy_hook_url)"
+  curl -fsS -X POST -m 30 --retry 3 "$hook" > /dev/null
+  echo "Triggered the Cloudflare Pages rebuild for snapshot $id."
+fi
+
+step="listing changes and stale fields"
+cd "$root/backend"
+with_secrets rails -- bin/rails data:changes
+stale=""
+with_secrets rails -- bin/rails data:freshness || stale=1
+
+step="opening issues"
+[[ ! -s tmp/refresh-failures.md ]] || alert "refresh-failures" tmp/refresh-failures.md
+[[ ! -s tmp/changes.md ]] || alert "changes" tmp/changes.md
+[[ -z "$stale" ]] || alert "freshness" tmp/freshness.md
+
+if [[ -z "$skip_alerts" ]] && heartbeat="$(op read op://LBPDEV/Global/healthcheck_url 2> /dev/null)"; then
+  curl -fsS -m 10 --retry 3 "$heartbeat" > /dev/null
+fi
+echo "Refresh complete: snapshot $id."

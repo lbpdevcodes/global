@@ -70,33 +70,65 @@ cd web && node scripts/build-borders.js --simplify=12%
 
 ## Deployment
 
-Two workflows deploy to Cloudflare Pages, and both share one concurrency group:
-- **`Daily refresh`** (05:15 UTC) refreshes the sources, publishes and archives a snapshot to
-  object storage, then builds and deploys.
-- **`Deploy web`** ships code that passed `CI web`, using the latest snapshot.
+Code and data deploy separately (see `docs/adr/0010-deploys.md`):
 
-Both stay skipped until these are set in the GitHub repository:
+- **Code:** Cloudflare Pages is connected to this repository. Every push to `main` deploys to
+  production, and every other branch gets a preview. Its build runs `npm run build:pages` in
+  `web/`: download the latest snapshot, check every country is selectable, build. Protect
+  `main` so merges need CI to pass, because Pages deploys whatever reaches it.
+- **Data:** `bin/refresh` runs daily at 07:00 on the owner's Mac. It refreshes the sources,
+  checks the snapshot, archives it, makes it the public latest one, and triggers a Pages
+  rebuild through a deploy hook. A run missed while the Mac sleeps happens at the next wake.
 
-| Kind | Name | What |
+### Secrets
+
+All secrets live in the 1Password item `Global` in vault `LBPDEV`. GitHub and Cloudflare hold
+none. `bin/refresh` reads them through the 1Password service account with `op run`. The files
+in `deploy/` hold only `op://` references, and each command gets only the secrets it needs.
+
+| 1Password field | What |
+|---|---|
+| `storage_access_key_id`, `storage_secret_access_key` | Linode Object Storage key, for the database, backups and snapshots |
+| `rails_master_key` | Decrypts `backend/config/credentials.yml.enc` (the REST Countries key) |
+| `deploy_hook_url` | Cloudflare Pages deploy hook for `main` |
+| `healthcheck_url` | Optional dead-man's-switch ping, e.g. healthchecks.io |
+
+The service account token comes from `OP_SERVICE_ACCOUNT_TOKEN`, or from the login Keychain
+when that is unset (as under launchd):
+
+```sh
+printf 'add-generic-password -U -a "%s" -s op-service-account-token -w "%s"\n' "$USER" "$OP_SERVICE_ACCOUNT_TOKEN" | security -i
+```
+
+### Storage
+
+`deploy/settings.env` points at `s3://lbpdev/global/prod` on Linode (`us-mia-1`). Any
+S3-compatible store works. The endpoint is the bare origin with no path, and the project's
+folder goes in `STORAGE_URL`, because a path on the endpoint breaks listings.
+
+| Path under `global/prod/` | What | Access |
 |---|---|---|
-| Variable | `PAGES_PROJECT` | Cloudflare Pages project name |
-| Variable | `STORAGE_URL` | `s3://lbpdev/global/prod`: the folder holding the database, backups and snapshots |
-| Variable | `STORAGE_ENDPOINT`, `STORAGE_REGION` | `https://us-mia-1.linodeobjects.com` and `us-mia-1` |
-| Secret | `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` | Pages deploys |
-| Secret | `STORAGE_ACCESS_KEY_ID`, `STORAGE_SECRET_ACCESS_KEY` | Object storage access key |
-| Secret | `RAILS_MASTER_KEY` | Contents of `backend/config/master.key` (decrypts the REST Countries key) |
-| Secret | `HEALTHCHECK_URL` | Optional dead-man's-switch ping, e.g. healthchecks.io |
+| `engine/engine.sqlite3`, `engine/backups/` | The database and a copy from every successful run | Private |
+| `snapshots/<id>/data-v1.tar.gz` | Every published snapshot | Private |
+| `latest/data-v1.tar.gz` | The snapshot Cloudflare's build downloads | Public: the same data the site serves |
 
-Storage is any S3-compatible bucket; v1 uses Linode Object Storage. The endpoint is the bare
-origin with no path, and the project's folder goes in `STORAGE_URL`, because a path on the
-endpoint breaks the listings that `aws s3 sync` makes.
+### Running it
 
-**First run:** trigger `Daily refresh` by hand with "start from an empty database" ticked. Every
-later run refuses to start if the stored database cannot be fetched.
+```sh
+bin/refresh --allow-empty --skip-deploy --skip-alerts   # first run only: start from an empty database
+bin/refresh                     # what the schedule runs, in this checkout
+bin/install-schedule            # install the 07:00 launchd job; needs bin/refresh on origin/main
+launchctl kickstart gui/$(id -u)/dev.lbp.global.refresh   # run the scheduled job now
+```
 
-**Alerts:** failed sources and stale fields open a GitHub issue.
+The scheduled job runs from its own checkout of `origin/main` in
+`~/.local/share/global-refresh`, never from a working copy. It logs to
+`~/Library/Logs/global/refresh.log`.
 
-**Rollback:** sync an older `snapshots/<id>/data/v1` over `latest/data/v1` in the bucket, then re-run
-`Deploy web`.
+**Alerts:** a failed run, failed sources, leadership changes and stale fields each open a
+GitHub issue, through the owner's `gh` login.
+
+**Rollback:** copy an older `snapshots/<id>/data-v1.tar.gz` over `latest/data-v1.tar.gz` with
+`--acl public-read`, then retry the latest production deployment in Cloudflare.
 
 Borders: Made with Natural Earth.

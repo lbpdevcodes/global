@@ -17,8 +17,8 @@ The owner builds in Rails and wants v1 small, but without a rewrite when require
   `ssr: false` plus `prerender`. Country pages can be pre-rendered for share previews and SEO
   through configuration, with no rewrite. globe.gl sits behind our own interface. The reader is
   served as static files from Cloudflare Pages, so no server runs at read time.
-- **Engine:** Rails 8.1 on SQLite. In v1 it is not a server. A scheduled GitHub Actions job runs
-  rake tasks through `bin/with-stored-database`, which fetches the database file from an
+- **Engine:** Rails 8.1 on SQLite. In v1 it is not a server. A scheduled job (on the owner's Mac
+  since 2026-10-28, ADR 0010) runs rake tasks through `bin/with-stored-database`, which fetches the database file from an
   S3-compatible bucket and uploads it, with a dated backup, only after a successful run.
 - **Seam:** a versioned JSON contract (ADR 0002). The reader knows nothing but the published files.
 

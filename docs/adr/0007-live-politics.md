@@ -16,7 +16,7 @@
 ## Review and checks
 
 - **`bin/rails data:changes`** lists leadership and ruling-party changes from the last day. The
-  daily workflow opens an issue so a person reviews each one.
+  daily refresh opens an issue so a person reviews each one.
 - **`bin/rails "data:spot_check[20]"`** compares 20 random profiles with Wikipedia: leaders
   against the country's infobox, and the ruling party against the head of government's infobox.
   The result is written to `tmp/spot-check.md`. A country whose article cannot be fetched is
