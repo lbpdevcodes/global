@@ -23,5 +23,8 @@ module Global
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Keep ViewComponent previews with the specs, since this app uses RSpec.
+    config.view_component.previews.paths << Rails.root.join("spec/components/previews").to_s
   end
 end
