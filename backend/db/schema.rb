@@ -10,5 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 0) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_28_020755) do
+  create_table "entities", force: :cascade do |t|
+    t.string "code", null: false
+    t.string "iso2"
+    t.string "wikidata_qid"
+    t.string "name", null: false
+    t.string "kind", null: false
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_entities_on_code", unique: true
+    t.index ["parent_id"], name: "index_entities_on_parent_id"
+  end
+
+  add_foreign_key "entities", "entities", column: "parent_id"
 end
