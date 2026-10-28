@@ -1,0 +1,261 @@
+{
+ "data": {
+  "objects": [
+   {
+    "names": {
+     "alternates": [
+      "L’Hexagone",
+      "France métropolitaine"
+     ],
+     "common": "France",
+     "official": "French Republic"
+    },
+    "codes": {
+     "alpha_2": "FR",
+     "alpha_3": "FRA",
+     "ccn3": "250",
+     "cioc": "FRA",
+     "fifa": "FRA",
+     "fips": "FR",
+     "gec": "FR"
+    },
+    "capitals": [
+     {
+      "attributes": {
+       "administrative": false,
+       "constitutional": false,
+       "executive": false,
+       "judicial": false,
+       "legislative": false,
+       "primary": true
+      },
+      "coordinates": {
+       "lat": 48.87,
+       "lng": 2.33
+      },
+      "name": "Paris"
+     }
+    ],
+    "flag": {
+     "emoji": "🇫🇷",
+     "url_svg": "https://flags.restcountries.com/v5/svg/fr.svg"
+    },
+    "classification": {
+     "dependency": false,
+     "dependency_type": "",
+     "disputed": false,
+     "iso_status": "official",
+     "sovereign": true,
+     "un_member": true,
+     "un_observer": false
+    },
+    "coordinates": {
+     "lat": 46,
+     "lng": 2
+    },
+    "languages": [
+     {
+      "bcp47": "fr",
+      "iso639_1": "fr",
+      "iso639_2b": "fre",
+      "iso639_2t": "fra",
+      "iso639_3": "fra",
+      "name": "French",
+      "native_name": "français"
+     }
+    ],
+    "memberships": {
+     "un": true
+    },
+    "_meta": {
+     "lastUpdatedTimestamp": 1788557518
+    }
+   },
+   {
+    "names": {
+     "alternates": [
+      "Bolivia, Plurinational State of"
+     ],
+     "common": "Bolivia",
+     "official": "Plurinational State of Bolivia"
+    },
+    "codes": {
+     "alpha_2": "BO",
+     "alpha_3": "BOL",
+     "ccn3": "068",
+     "cioc": "BOL",
+     "fifa": "BOL",
+     "fips": "BL",
+     "gec": "BL"
+    },
+    "capitals": [
+     {
+      "attributes": {
+       "administrative": false,
+       "constitutional": true,
+       "executive": false,
+       "judicial": false,
+       "legislative": false,
+       "primary": false
+      },
+      "coordinates": {
+       "lat": -19.04,
+       "lng": -65.26
+      },
+      "name": "Sucre"
+     },
+     {
+      "attributes": {
+       "administrative": true,
+       "constitutional": false,
+       "executive": false,
+       "judicial": false,
+       "legislative": false,
+       "primary": false
+      },
+      "coordinates": {
+       "lat": -16.5,
+       "lng": -68.15
+      },
+      "name": "La Paz"
+     }
+    ],
+    "flag": {
+     "emoji": "🇧🇴",
+     "url_svg": "https://flags.restcountries.com/v5/svg/bo.svg"
+    },
+    "classification": {
+     "dependency": false,
+     "dependency_type": "",
+     "disputed": false,
+     "iso_status": "official",
+     "sovereign": true,
+     "un_member": true,
+     "un_observer": false
+    },
+    "coordinates": {
+     "lat": -17,
+     "lng": -65
+    },
+    "languages": [
+     {
+      "bcp47": "ay",
+      "iso639_1": "ay",
+      "iso639_2b": "aym",
+      "iso639_2t": "aym",
+      "iso639_3": "aym",
+      "name": "Aymara",
+      "native_name": "Aymar aru"
+     },
+     {
+      "bcp47": "gn",
+      "iso639_1": "gn",
+      "iso639_2b": "grn",
+      "iso639_2t": "grn",
+      "iso639_3": "grn",
+      "name": "Guarani",
+      "native_name": "Avañe'ẽ"
+     },
+     {
+      "bcp47": "qu",
+      "iso639_1": "qu",
+      "iso639_2b": "que",
+      "iso639_2t": "que",
+      "iso639_3": "que",
+      "name": "Quechua",
+      "native_name": "Runa Simi"
+     },
+     {
+      "bcp47": "es",
+      "iso639_1": "es",
+      "iso639_2b": "spa",
+      "iso639_2t": "spa",
+      "iso639_3": "spa",
+      "name": "Spanish",
+      "native_name": "español"
+     }
+    ],
+    "memberships": {
+     "un": true
+    },
+    "_meta": {
+     "lastUpdatedTimestamp": 1788557517
+    }
+   },
+   {
+    "names": {
+     "alternates": [],
+     "common": "Denmark",
+     "official": "Kingdom of Denmark"
+    },
+    "codes": {
+     "alpha_2": "DK",
+     "alpha_3": "DNK",
+     "ccn3": "208",
+     "cioc": "DEN",
+     "fifa": "DEN",
+     "fips": "DA",
+     "gec": "DA"
+    },
+    "capitals": [
+     {
+      "attributes": {
+       "administrative": false,
+       "constitutional": false,
+       "executive": false,
+       "judicial": false,
+       "legislative": false,
+       "primary": true
+      },
+      "coordinates": {
+       "lat": 55.67,
+       "lng": 12.58
+      },
+      "name": "Copenhagen"
+     }
+    ],
+    "flag": {
+     "emoji": "🇩🇰",
+     "url_svg": "https://flags.restcountries.com/v5/svg/dk.svg"
+    },
+    "classification": {
+     "dependency": false,
+     "dependency_type": "",
+     "disputed": false,
+     "iso_status": "official",
+     "sovereign": true,
+     "un_member": true,
+     "un_observer": false
+    },
+    "coordinates": {
+     "lat": 56,
+     "lng": 10
+    },
+    "languages": [
+     {
+      "bcp47": "da",
+      "iso639_1": "da",
+      "iso639_2b": "dan",
+      "iso639_2t": "dan",
+      "iso639_3": "dan",
+      "name": "Danish",
+      "native_name": "dansk"
+     }
+    ],
+    "memberships": {
+     "un": true
+    },
+    "_meta": {
+     "lastUpdatedTimestamp": 1792154695
+    }
+   }
+  ],
+  "meta": {
+   "total": 6,
+   "count": 3,
+   "limit": 100,
+   "offset": 0,
+   "more": true
+  }
+ }
+}

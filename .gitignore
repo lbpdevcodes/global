@@ -1,0 +1,10 @@
+.DS_Store
+.env
+.env.*
+node_modules/
+web/build/
+web/.react-router/
+web/test-results/
+web/playwright-report/
+web/.wrangler/
+web/data/

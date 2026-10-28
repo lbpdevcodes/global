@@ -1,0 +1,33 @@
+name: CI web
+
+on:
+  push:
+    branches: [main]
+    paths: [web/**, contracts/**, .node-version, .github/workflows/ci-web.yml]
+  pull_request:
+    paths: [web/**, contracts/**, .node-version, .github/workflows/ci-web.yml]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - name: Lighthouse (performance and accessibility, median of three)
+        run: |
+          SNAPSHOT_DIR=../contracts/examples npm run build
+          npx wrangler pages dev build/client --port 4180 --compatibility-date=2026-10-23 > wrangler.log 2>&1 &
+          for attempt in $(seq 1 60); do curl -fs -o /dev/null http://localhost:4180/ && break; sleep 1; done
+          npm run lighthouse -- http://localhost:4180/ http://localhost:4180/country/FRA

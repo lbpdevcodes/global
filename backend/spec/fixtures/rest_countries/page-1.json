@@ -1,0 +1,243 @@
+{
+ "data": {
+  "objects": [
+   {
+    "names": {
+     "alternates": [],
+     "common": "Kosovo",
+     "official": "Republic of Kosovo"
+    },
+    "codes": {
+     "alpha_2": "XK",
+     "alpha_3": "UNK",
+     "ccn3": "",
+     "cioc": "KOS",
+     "fifa": "KVX",
+     "fips": "KV",
+     "gec": "KV"
+    },
+    "capitals": [
+     {
+      "attributes": {
+       "administrative": false,
+       "constitutional": false,
+       "executive": false,
+       "judicial": false,
+       "legislative": false,
+       "primary": true
+      },
+      "coordinates": {
+       "lat": 42.67,
+       "lng": 21.17
+      },
+      "name": "Pristina"
+     }
+    ],
+    "flag": {
+     "emoji": "🇽🇰",
+     "url_svg": "https://flags.restcountries.com/v5/svg/xk.svg"
+    },
+    "classification": {
+     "dependency": false,
+     "dependency_type": "",
+     "disputed": true,
+     "iso_status": "user_assigned",
+     "sovereign": true,
+     "un_member": false,
+     "un_observer": false
+    },
+    "coordinates": {
+     "lat": 42.666667,
+     "lng": 21.166667
+    },
+    "languages": [
+     {
+      "bcp47": "sq",
+      "iso639_1": "sq",
+      "iso639_2b": "alb",
+      "iso639_2t": "sqi",
+      "iso639_3": "sqi",
+      "name": "Albanian",
+      "native_name": "shqip"
+     },
+     {
+      "bcp47": "sr",
+      "iso639_1": "sr",
+      "iso639_2b": "srp",
+      "iso639_2t": "srp",
+      "iso639_3": "srp",
+      "name": "Serbian",
+      "native_name": "српски језик"
+     }
+    ],
+    "memberships": {
+     "un": false
+    },
+    "_meta": {
+     "lastUpdatedTimestamp": 1792498329
+    }
+   },
+   {
+    "names": {
+     "alternates": [
+      "Grønland"
+     ],
+     "common": "Greenland",
+     "official": "Greenland"
+    },
+    "codes": {
+     "alpha_2": "GL",
+     "alpha_3": "GRL",
+     "ccn3": "304",
+     "cioc": "",
+     "fifa": "",
+     "fips": "",
+     "gec": ""
+    },
+    "capitals": [
+     {
+      "attributes": {
+       "administrative": false,
+       "constitutional": false,
+       "executive": false,
+       "judicial": false,
+       "legislative": false,
+       "primary": true
+      },
+      "coordinates": {
+       "lat": 64.18,
+       "lng": -51.75
+      },
+      "name": "Nuuk"
+     }
+    ],
+    "flag": {
+     "emoji": "🇬🇱",
+     "url_svg": "https://flags.restcountries.com/v5/svg/gl.svg"
+    },
+    "classification": {
+     "dependency": true,
+     "dependency_type": "autonomous_region",
+     "disputed": false,
+     "iso_status": "official",
+     "sovereign": false,
+     "un_member": false,
+     "un_observer": false
+    },
+    "coordinates": {
+     "lat": 72,
+     "lng": -40
+    },
+    "languages": [
+     {
+      "bcp47": "kl",
+      "iso639_1": "kl",
+      "iso639_2b": "kal",
+      "iso639_2t": "kal",
+      "iso639_3": "kal",
+      "name": "Greenlandic",
+      "native_name": "kalaallisut"
+     }
+    ],
+    "memberships": {
+     "un": false
+    },
+    "_meta": {
+     "lastUpdatedTimestamp": 1788724018
+    }
+   },
+   {
+    "names": {
+     "alternates": [],
+     "common": "Somaliland",
+     "official": "Republic of Somaliland"
+    },
+    "codes": {
+     "alpha_2": "",
+     "alpha_3": "",
+     "ccn3": "",
+     "cioc": "",
+     "fifa": "",
+     "fips": "",
+     "gec": ""
+    },
+    "capitals": [
+     {
+      "attributes": {
+       "administrative": false,
+       "constitutional": false,
+       "executive": false,
+       "judicial": false,
+       "legislative": false,
+       "primary": true
+      },
+      "coordinates": {
+       "lat": 9.5605,
+       "lng": 44.065
+      },
+      "name": "Hargeisa"
+     }
+    ],
+    "flag": {
+     "emoji": "",
+     "url_svg": ""
+    },
+    "classification": {
+     "dependency": false,
+     "dependency_type": "",
+     "disputed": true,
+     "iso_status": "unassigned",
+     "sovereign": true,
+     "un_member": false,
+     "un_observer": false
+    },
+    "coordinates": {
+     "lat": 9.5,
+     "lng": 45.5
+    },
+    "languages": [
+     {
+      "bcp47": "so",
+      "iso639_1": "so",
+      "iso639_2b": "som",
+      "iso639_2t": "som",
+      "iso639_3": "som",
+      "name": "Somali",
+      "native_name": "Soomaaliga"
+     },
+     {
+      "bcp47": "ar",
+      "iso639_1": "ar",
+      "iso639_2b": "ara",
+      "iso639_2t": "ara",
+      "iso639_3": "ara",
+      "name": "Arabic",
+      "native_name": "العربية"
+     },
+     {
+      "bcp47": "en",
+      "iso639_1": "en",
+      "iso639_2b": "eng",
+      "iso639_2t": "eng",
+      "iso639_3": "eng",
+      "name": "English",
+      "native_name": "English"
+     }
+    ],
+    "memberships": {
+     "un": false
+    },
+    "_meta": {
+     "lastUpdatedTimestamp": 1788557520
+    }
+   }
+  ],
+  "meta": {
+   "total": 6,
+   "count": 3,
+   "limit": 100,
+   "offset": 100,
+   "more": false
+  }
+ }
+}

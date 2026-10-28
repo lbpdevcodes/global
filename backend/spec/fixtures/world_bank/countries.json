@@ -1,0 +1,150 @@
+[
+ {
+  "page": 1,
+  "pages": 1,
+  "per_page": "400",
+  "total": 296
+ },
+ [
+  {
+   "id": "ERI",
+   "iso2Code": "ER",
+   "name": "Eritrea",
+   "region": {
+    "id": "SSF",
+    "iso2code": "ZG",
+    "value": "Sub-Saharan Africa "
+   },
+   "adminregion": {
+    "id": "SSA",
+    "iso2code": "ZF",
+    "value": "Sub-Saharan Africa (excluding high income)"
+   },
+   "incomeLevel": {
+    "id": "LIC",
+    "iso2code": "XM",
+    "value": "Low income"
+   },
+   "lendingType": {
+    "id": "IDX",
+    "iso2code": "XI",
+    "value": "IDA"
+   },
+   "capitalCity": "Asmara",
+   "longitude": "38.9183",
+   "latitude": "15.3315"
+  },
+  {
+   "id": "FRA",
+   "iso2Code": "FR",
+   "name": "France",
+   "region": {
+    "id": "ECS",
+    "iso2code": "Z7",
+    "value": "Europe & Central Asia"
+   },
+   "adminregion": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "incomeLevel": {
+    "id": "HIC",
+    "iso2code": "XD",
+    "value": "High income"
+   },
+   "lendingType": {
+    "id": "LNX",
+    "iso2code": "XX",
+    "value": "Not classified"
+   },
+   "capitalCity": "Paris",
+   "longitude": "2.35097",
+   "latitude": "48.8566"
+  },
+  {
+   "id": "PSE",
+   "iso2Code": "PS",
+   "name": "West Bank and Gaza",
+   "region": {
+    "id": "MEA",
+    "iso2code": "ZQ",
+    "value": "Middle East, North Africa, Afghanistan & Pakistan"
+   },
+   "adminregion": {
+    "id": "MNA",
+    "iso2code": "XQ",
+    "value": "Middle East, North Africa, Afghanistan & Pakistan (excluding high income)"
+   },
+   "incomeLevel": {
+    "id": "LMC",
+    "iso2code": "XN",
+    "value": "Lower middle income"
+   },
+   "lendingType": {
+    "id": "LNX",
+    "iso2code": "XX",
+    "value": "Not classified"
+   },
+   "capitalCity": "",
+   "longitude": "",
+   "latitude": ""
+  },
+  {
+   "id": "WLD",
+   "iso2Code": "1W",
+   "name": "World",
+   "region": {
+    "id": "NA",
+    "iso2code": "NA",
+    "value": "Aggregates"
+   },
+   "adminregion": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "incomeLevel": {
+    "id": "NA",
+    "iso2code": "NA",
+    "value": "Aggregates"
+   },
+   "lendingType": {
+    "id": "",
+    "iso2code": "",
+    "value": "Aggregates"
+   },
+   "capitalCity": "",
+   "longitude": "",
+   "latitude": ""
+  },
+  {
+   "id": "XKX",
+   "iso2Code": "XK",
+   "name": "Kosovo",
+   "region": {
+    "id": "ECS",
+    "iso2code": "Z7",
+    "value": "Europe & Central Asia"
+   },
+   "adminregion": {
+    "id": "ECA",
+    "iso2code": "7E",
+    "value": "Europe & Central Asia (excluding high income)"
+   },
+   "incomeLevel": {
+    "id": "UMC",
+    "iso2code": "XT",
+    "value": "Upper middle income"
+   },
+   "lendingType": {
+    "id": "IDX",
+    "iso2code": "XI",
+    "value": "IDA"
+   },
+   "capitalCity": "Pristina",
+   "longitude": "20.926",
+   "latitude": "42.565"
+  }
+ ]
+]

@@ -1,0 +1,492 @@
+[
+ {
+  "page": 1,
+  "pages": 1,
+  "per_page": 20000,
+  "total": 1596,
+  "sourceid": "2",
+  "lastupdated": "2026-10-08"
+ },
+ [
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "1W",
+    "value": "World"
+   },
+   "countryiso3code": "WLD",
+   "date": "2025",
+   "value": 14405.8484595528,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "1W",
+    "value": "World"
+   },
+   "countryiso3code": "WLD",
+   "date": "2024",
+   "value": 13717.0909956338,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "1W",
+    "value": "World"
+   },
+   "countryiso3code": "WLD",
+   "date": "2023",
+   "value": 13313.8575826001,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "1W",
+    "value": "World"
+   },
+   "countryiso3code": "WLD",
+   "date": "2022",
+   "value": 12876.2377124072,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "1W",
+    "value": "World"
+   },
+   "countryiso3code": "WLD",
+   "date": "2021",
+   "value": 12472.9074157191,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "1W",
+    "value": "World"
+   },
+   "countryiso3code": "WLD",
+   "date": "2020",
+   "value": 10999.4917581781,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "ER",
+    "value": "Eritrea"
+   },
+   "countryiso3code": "ERI",
+   "date": "2025",
+   "value": null,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "ER",
+    "value": "Eritrea"
+   },
+   "countryiso3code": "ERI",
+   "date": "2024",
+   "value": null,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "ER",
+    "value": "Eritrea"
+   },
+   "countryiso3code": "ERI",
+   "date": "2023",
+   "value": null,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "ER",
+    "value": "Eritrea"
+   },
+   "countryiso3code": "ERI",
+   "date": "2022",
+   "value": null,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "ER",
+    "value": "Eritrea"
+   },
+   "countryiso3code": "ERI",
+   "date": "2021",
+   "value": null,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "ER",
+    "value": "Eritrea"
+   },
+   "countryiso3code": "ERI",
+   "date": "2020",
+   "value": null,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "FR",
+    "value": "France"
+   },
+   "countryiso3code": "FRA",
+   "date": "2025",
+   "value": 48985.7307807924,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "FR",
+    "value": "France"
+   },
+   "countryiso3code": "FRA",
+   "date": "2024",
+   "value": 46103.0840855884,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "FR",
+    "value": "France"
+   },
+   "countryiso3code": "FRA",
+   "date": "2023",
+   "value": 44700.1384177544,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "FR",
+    "value": "France"
+   },
+   "countryiso3code": "FRA",
+   "date": "2022",
+   "value": 40988.6396406579,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "FR",
+    "value": "France"
+   },
+   "countryiso3code": "FRA",
+   "date": "2021",
+   "value": 43725.0999521245,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "FR",
+    "value": "France"
+   },
+   "countryiso3code": "FRA",
+   "date": "2020",
+   "value": 39169.8606000707,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "XK",
+    "value": "Kosovo"
+   },
+   "countryiso3code": "XKX",
+   "date": "2025",
+   "value": 7899.41841135202,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "XK",
+    "value": "Kosovo"
+   },
+   "countryiso3code": "XKX",
+   "date": "2024",
+   "value": 7026.6988128325,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "XK",
+    "value": "Kosovo"
+   },
+   "countryiso3code": "XKX",
+   "date": "2023",
+   "value": 6220.33213919344,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "XK",
+    "value": "Kosovo"
+   },
+   "countryiso3code": "XKX",
+   "date": "2022",
+   "value": 5298.1473871027,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "XK",
+    "value": "Kosovo"
+   },
+   "countryiso3code": "XKX",
+   "date": "2021",
+   "value": 5269.69946181439,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "XK",
+    "value": "Kosovo"
+   },
+   "countryiso3code": "XKX",
+   "date": "2020",
+   "value": 4320.58382547288,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "PS",
+    "value": "West Bank and Gaza"
+   },
+   "countryiso3code": "PSE",
+   "date": "2025",
+   "value": 3171.10844621579,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "PS",
+    "value": "West Bank and Gaza"
+   },
+   "countryiso3code": "PSE",
+   "date": "2024",
+   "value": 3028.25481286981,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "PS",
+    "value": "West Bank and Gaza"
+   },
+   "countryiso3code": "PSE",
+   "date": "2023",
+   "value": 3607.41611858821,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "PS",
+    "value": "West Bank and Gaza"
+   },
+   "countryiso3code": "PSE",
+   "date": "2022",
+   "value": 3799.95527015163,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "PS",
+    "value": "West Bank and Gaza"
+   },
+   "countryiso3code": "PSE",
+   "date": "2021",
+   "value": 3678.63565662194,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  },
+  {
+   "indicator": {
+    "id": "NY.GDP.PCAP.CD",
+    "value": "GDP per capita (current US$)"
+   },
+   "country": {
+    "id": "PS",
+    "value": "West Bank and Gaza"
+   },
+   "countryiso3code": "PSE",
+   "date": "2020",
+   "value": 3233.56863835858,
+   "unit": "",
+   "obs_status": "",
+   "decimal": 1
+  }
+ ]
+]

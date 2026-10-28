@@ -1,0 +1,42 @@
+{
+ "head": {
+  "vars": [
+   "type",
+   "base"
+  ]
+ },
+ "results": {
+  "bindings": [
+   {
+    "type": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q890055"
+    },
+    "base": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q858439"
+    }
+   },
+   {
+    "type": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q22696407"
+    },
+    "base": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1076105"
+    }
+   },
+   {
+    "type": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q22696407"
+    },
+    "base": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q2618461"
+    }
+   }
+  ]
+ }
+}

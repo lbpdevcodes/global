@@ -1,0 +1,115 @@
+{
+  "description": "Every profile field in display order: its label and refresh window in days (docs/adr/0005-freshness.md).",
+  "fields": [
+    {
+      "key": "header.name",
+      "label": "Name",
+      "refreshDays": 31
+    },
+    {
+      "key": "header.officialName",
+      "label": "Official name",
+      "refreshDays": 31
+    },
+    {
+      "key": "header.capital",
+      "label": "Capital",
+      "refreshDays": 31
+    },
+    {
+      "key": "header.flagEmoji",
+      "label": "Flag",
+      "refreshDays": 31
+    },
+    {
+      "key": "header.iso2",
+      "label": "ISO code (2-letter)",
+      "refreshDays": 31
+    },
+    {
+      "key": "header.iso3",
+      "label": "ISO code (3-letter)",
+      "refreshDays": 31
+    },
+    {
+      "key": "leadership.headOfState",
+      "label": "Head of state",
+      "refreshDays": 1
+    },
+    {
+      "key": "leadership.headOfGovernment",
+      "label": "Head of government",
+      "refreshDays": 1
+    },
+    {
+      "key": "leadership.nextNationalElection",
+      "label": "Next national election",
+      "refreshDays": 7
+    },
+    {
+      "key": "government.governmentType",
+      "label": "Government type",
+      "refreshDays": 31
+    },
+    {
+      "key": "government.democracyScore",
+      "label": "Democracy score",
+      "refreshDays": 366
+    },
+    {
+      "key": "government.recognitionStatus",
+      "label": "Recognition",
+      "refreshDays": 31
+    },
+    {
+      "key": "people.population",
+      "label": "Population",
+      "refreshDays": 366
+    },
+    {
+      "key": "people.officialLanguages",
+      "label": "Official languages",
+      "refreshDays": 366
+    },
+    {
+      "key": "people.majorReligions",
+      "label": "Major religions",
+      "refreshDays": 366
+    },
+    {
+      "key": "economy.gdpUsd",
+      "label": "GDP",
+      "refreshDays": 366
+    },
+    {
+      "key": "economy.gdpPerCapitaUsd",
+      "label": "GDP per person",
+      "refreshDays": 366
+    },
+    {
+      "key": "economy.topExports",
+      "label": "Top exports",
+      "refreshDays": 366
+    },
+    {
+      "key": "economy.topTradePartners",
+      "label": "Top trade partners",
+      "refreshDays": 366
+    },
+    {
+      "key": "politics.rulingPartyOrCoalition",
+      "label": "Ruling party or coalition",
+      "refreshDays": 7
+    },
+    {
+      "key": "politics.majorParties",
+      "label": "Major parties",
+      "refreshDays": 7
+    },
+    {
+      "key": "politics.alliances",
+      "label": "Alliances and memberships",
+      "refreshDays": 31
+    }
+  ]
+}

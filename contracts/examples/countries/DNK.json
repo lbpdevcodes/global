@@ -1,0 +1,80 @@
+{
+  "code": "DNK",
+  "header": {
+    "name": {
+      "value": "Denmark",
+      "source": "https://restcountries.com/v3.1/alpha/DNK",
+      "asOf": "2026-10-27"
+    },
+    "officialName": {
+      "value": "Kingdom of Denmark",
+      "source": "https://restcountries.com/v3.1/alpha/DNK",
+      "asOf": "2026-10-27"
+    },
+    "capital": {
+      "value": "Copenhagen",
+      "source": "https://restcountries.com/v3.1/alpha/DNK",
+      "asOf": "2026-10-27"
+    },
+    "flagEmoji": {
+      "value": "🇩🇰",
+      "source": "https://restcountries.com/v3.1/alpha/DNK",
+      "asOf": "2026-10-27"
+    },
+    "iso2": {
+      "value": "DK",
+      "source": "https://restcountries.com/v3.1/alpha/DNK",
+      "asOf": "2026-10-27"
+    },
+    "iso3": {
+      "value": "DNK",
+      "source": "https://restcountries.com/v3.1/alpha/DNK",
+      "asOf": "2026-10-27"
+    }
+  },
+  "leadership": {
+    "headOfState": null,
+    "headOfGovernment": null,
+    "nextNationalElection": null
+  },
+  "government": {
+    "governmentType": null,
+    "democracyScore": null,
+    "recognitionStatus": {
+      "value": {
+        "status": "full",
+        "note": null
+      },
+      "source": "https://www.wikidata.org/wiki/Q35",
+      "asOf": "2026-10-27"
+    }
+  },
+  "people": {
+    "population": null,
+    "officialLanguages": null,
+    "majorReligions": null
+  },
+  "economy": {
+    "gdpUsd": null,
+    "gdpPerCapitaUsd": null,
+    "topExports": null,
+    "topTradePartners": null
+  },
+  "politics": {
+    "rulingPartyOrCoalition": null,
+    "majorParties": null,
+    "alliances": null
+  },
+  "tensions": {
+    "items": []
+  },
+  "meta": {
+    "lastUpdated": "2026-10-27T06:00:00Z",
+    "sources": [
+      {
+        "name": "REST Countries",
+        "url": "https://restcountries.com/"
+      }
+    ]
+  }
+}

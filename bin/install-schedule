@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Installs the daily refresh as a launchd agent on this Mac (ADR 0010). It runs
+# `bin/refresh --update` at 07:00 local time from its own checkout of origin/main,
+# never from a working copy. A run missed while the Mac sleeps happens at the
+# next wake. Run it again to pick up a new schedule; uninstall with
+#   launchctl bootout gui/$(id -u)/dev.lbp.global.refresh
+set -euo pipefail
+
+label="dev.lbp.global.refresh"
+checkout="$HOME/.local/share/global-refresh"
+plist="$HOME/Library/LaunchAgents/$label.plist"
+logs="$HOME/Library/Logs/global"
+repository="https://github.com/lbpdevcodes/global.git"
+# HTTPS through gh's stored login, which works under launchd; the SSH agent may not.
+helper='!gh auth git-credential'
+
+if [[ ! -d "$checkout/.git" ]]; then
+  git -c credential.helper= -c credential.helper="$helper" clone --quiet --no-checkout "$repository" "$checkout"
+  git -C "$checkout" config credential.helper "$helper"
+fi
+git -C "$checkout" fetch --quiet origin main
+git -C "$checkout" cat-file -e origin/main:bin/refresh 2> /dev/null ||
+  { echo "origin/main has no bin/refresh yet: merge the deploy work into main first." >&2; exit 1; }
+git -C "$checkout" checkout --quiet --detach --force origin/main
+
+mkdir -p "$logs" "$(dirname "$plist")"
+cat > "$plist" << PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>$label</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>$checkout/bin/refresh</string>
+    <string>--update</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>7</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>$logs/refresh.log</string>
+  <key>StandardErrorPath</key>
+  <string>$logs/refresh.log</string>
+</dict>
+</plist>
+PLIST
+
+launchctl bootout "gui/$(id -u)/$label" 2> /dev/null || true
+launchctl bootstrap "gui/$(id -u)" "$plist"
+echo "Installed $label: daily at 07:00 from $checkout."
+echo "Logs: $logs/refresh.log. Run it now: launchctl kickstart gui/$(id -u)/$label"

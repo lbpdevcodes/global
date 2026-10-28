@@ -1,0 +1,80 @@
+{
+  "code": "XKX",
+  "header": {
+    "name": {
+      "value": "Kosovo",
+      "source": "https://restcountries.com/v3.1/alpha/XKX",
+      "asOf": "2026-10-27"
+    },
+    "officialName": {
+      "value": "Republic of Kosovo",
+      "source": "https://restcountries.com/v3.1/alpha/XKX",
+      "asOf": "2026-10-27"
+    },
+    "capital": {
+      "value": "Pristina",
+      "source": "https://restcountries.com/v3.1/alpha/XKX",
+      "asOf": "2026-10-27"
+    },
+    "flagEmoji": {
+      "value": "🇽🇰",
+      "source": "https://restcountries.com/v3.1/alpha/XKX",
+      "asOf": "2026-10-27"
+    },
+    "iso2": {
+      "value": "XK",
+      "source": "https://restcountries.com/v3.1/alpha/XKX",
+      "asOf": "2026-10-27"
+    },
+    "iso3": {
+      "value": "XKX",
+      "source": "https://restcountries.com/v3.1/alpha/XKX",
+      "asOf": "2026-10-27"
+    }
+  },
+  "leadership": {
+    "headOfState": null,
+    "headOfGovernment": null,
+    "nextNationalElection": null
+  },
+  "government": {
+    "governmentType": null,
+    "democracyScore": null,
+    "recognitionStatus": {
+      "value": {
+        "status": "partial",
+        "note": "Recognized by some UN member states"
+      },
+      "source": "https://www.wikidata.org/wiki/Q1246",
+      "asOf": "2026-10-27"
+    }
+  },
+  "people": {
+    "population": null,
+    "officialLanguages": null,
+    "majorReligions": null
+  },
+  "economy": {
+    "gdpUsd": null,
+    "gdpPerCapitaUsd": null,
+    "topExports": null,
+    "topTradePartners": null
+  },
+  "politics": {
+    "rulingPartyOrCoalition": null,
+    "majorParties": null,
+    "alliances": null
+  },
+  "tensions": {
+    "items": []
+  },
+  "meta": {
+    "lastUpdated": "2026-10-27T06:00:00Z",
+    "sources": [
+      {
+        "name": "REST Countries",
+        "url": "https://restcountries.com/"
+      }
+    ]
+  }
+}

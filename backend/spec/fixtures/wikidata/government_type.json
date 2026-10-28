@@ -1,0 +1,42 @@
+{
+ "head": {
+  "vars": [
+   "item",
+   "forms"
+  ]
+ },
+ "results": {
+  "bindings": [
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q30"
+    },
+    "forms": {
+     "type": "literal",
+     "value": "republic|presidential system|federal republic|constitutional republic|democratic republic"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q117"
+    },
+    "forms": {
+     "type": "literal",
+     "value": "democracy"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q142"
+    },
+    "forms": {
+     "type": "literal",
+     "value": "semi-presidential system|unitary state|decentralization"
+    }
+   }
+  ]
+ }
+}

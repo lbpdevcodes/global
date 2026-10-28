@@ -1,0 +1,28 @@
+name: CI backend
+
+on:
+  push:
+    branches: [main]
+    paths: [backend/**, contracts/**, .github/workflows/ci-backend.yml]
+  pull_request:
+    paths: [backend/**, contracts/**, .github/workflows/ci-backend.yml]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ruby/setup-ruby@v1
+        with:
+          working-directory: backend
+          bundler-cache: true
+      - name: Check the sqlite3 CLI (bin/with-stored-database needs it)
+        run: sqlite3 --version
+      - run: bin/rails db:test:prepare
+      - run: bundle exec rspec
+      - run: bundle exec standardrb
+      - run: bin/brakeman --quiet --no-pager --exit-on-warn --exit-on-error
+      - run: bin/bundler-audit

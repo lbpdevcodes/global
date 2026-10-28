@@ -1,0 +1,172 @@
+{
+  "snapshotId": "example-2026-10-27",
+  "entities": [
+    {
+      "code": "DNK",
+      "name": "Denmark",
+      "kind": "sovereign",
+      "parent": null,
+      "aliases": [
+        "Danmark"
+      ],
+      "centroid": {
+        "lat": 56.0,
+        "lng": 10.0
+      },
+      "recognition": {
+        "status": "full",
+        "note": null
+      },
+      "layers": {
+        "governmentType": {
+          "value": "Constitutional monarchy",
+          "asOf": "2026-10-27"
+        },
+        "democracyScore": null,
+        "population": null,
+        "conflictStatus": {
+          "value": "none",
+          "asOf": "2026-10-27"
+        }
+      },
+      "note": null
+    },
+    {
+      "code": "FRA",
+      "name": "France",
+      "kind": "sovereign",
+      "parent": null,
+      "aliases": [
+        "French Republic"
+      ],
+      "centroid": {
+        "lat": 46.2,
+        "lng": 2.2
+      },
+      "recognition": {
+        "status": "full",
+        "note": null
+      },
+      "layers": {
+        "governmentType": {
+          "value": "Semi-presidential republic",
+          "asOf": "2026-10-27"
+        },
+        "democracyScore": {
+          "value": 0.82,
+          "asOf": "2026-10-27"
+        },
+        "population": {
+          "value": 68170000,
+          "asOf": "2026-10-27"
+        },
+        "conflictStatus": {
+          "value": "none",
+          "asOf": "2026-10-27"
+        }
+      },
+      "note": null
+    },
+    {
+      "code": "GRL",
+      "name": "Greenland",
+      "kind": "territory",
+      "parent": "DNK",
+      "aliases": [
+        "Kalaallit Nunaat"
+      ],
+      "centroid": {
+        "lat": 72.0,
+        "lng": -40.0
+      },
+      "recognition": null,
+      "layers": null,
+      "note": {
+        "value": "Autonomous region of Denmark",
+        "source": "https://restcountries.com/",
+        "asOf": "2026-10-27"
+      }
+    },
+    {
+      "code": "NLD",
+      "name": "Netherlands",
+      "kind": "sovereign",
+      "parent": null,
+      "aliases": [
+        "Holland",
+        "The Netherlands",
+        "Nederland"
+      ],
+      "centroid": {
+        "lat": 52.1,
+        "lng": 5.3
+      },
+      "recognition": {
+        "status": "full",
+        "note": null
+      },
+      "layers": {
+        "governmentType": null,
+        "democracyScore": null,
+        "population": null,
+        "conflictStatus": {
+          "value": "none",
+          "asOf": "2026-10-27"
+        }
+      },
+      "note": null
+    },
+    {
+      "code": "TWN",
+      "name": "Taiwan",
+      "kind": "partially_recognized",
+      "parent": null,
+      "aliases": [
+        "Republic of China"
+      ],
+      "centroid": {
+        "lat": 23.7,
+        "lng": 121.0
+      },
+      "recognition": {
+        "status": "partial",
+        "note": "Recognized by a small number of UN member states"
+      },
+      "layers": {
+        "governmentType": null,
+        "democracyScore": null,
+        "population": null,
+        "conflictStatus": {
+          "value": "tension",
+          "asOf": "2026-10-27"
+        }
+      },
+      "note": null
+    },
+    {
+      "code": "XKX",
+      "name": "Kosovo",
+      "kind": "partially_recognized",
+      "parent": null,
+      "aliases": [
+        "Republic of Kosovo",
+        "Kosova"
+      ],
+      "centroid": {
+        "lat": 42.6,
+        "lng": 20.9
+      },
+      "recognition": {
+        "status": "partial",
+        "note": "Recognized by some UN member states"
+      },
+      "layers": {
+        "governmentType": null,
+        "democracyScore": null,
+        "population": null,
+        "conflictStatus": null
+      },
+      "note": null
+    }
+  ]
+}
