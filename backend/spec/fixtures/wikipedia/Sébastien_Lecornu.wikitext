@@ -1,0 +1,5 @@
+{{Infobox officeholder
+| name = Sébastien Lecornu
+| office = [[Prime Minister of France]]
+| party = [[Renaissance (French political party)|Renaissance]] (since 2017)
+}}

@@ -20,6 +20,11 @@ describe("formatValue", () => {
     expect(formatValue("leadership.headOfState", holder)).toBe("Emmanuel Macron, President (since 2017)");
   });
 
+  it("leaves out the start year when the source has none", () => {
+    expect(formatValue("leadership.headOfGovernment", { name: "Luc Frieden", title: "Prime Minister", since: null }))
+      .toBe("Luc Frieden, Prime Minister");
+  });
+
   it("describes the next election by type and date", () => {
     expect(formatValue("leadership.nextNationalElection", { type: "Presidential", date: "2027" })).toBe("Presidential, 2027");
   });

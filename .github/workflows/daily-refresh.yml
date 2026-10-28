@@ -69,17 +69,19 @@ jobs:
           npm run build
           npx wrangler pages deploy build/client --project-name="${{ vars.PAGES_PROJECT }}" --branch=main
 
-      - name: Check freshness
+      - name: Check freshness and list changes to review
         id: freshness
         working-directory: backend
-        run: bin/rails data:freshness || echo "stale=true" >> "$GITHUB_OUTPUT"
+        run: |
+          bin/rails data:changes
+          bin/rails data:freshness || echo "stale=true" >> "$GITHUB_OUTPUT"
 
-      - name: Report failed sources or stale fields
+      - name: Report failed sources, leadership changes and stale fields
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          for report in backend/tmp/refresh-failures.md backend/tmp/freshness.md; do
+          for report in backend/tmp/refresh-failures.md backend/tmp/changes.md backend/tmp/freshness.md; do
             if [ -s "$report" ] && { [ "$report" != backend/tmp/freshness.md ] || [ "${{ steps.freshness.outputs.stale }}" = true ]; }; then
               gh issue create --title "Daily refresh $(date -u +%F): $(basename "$report" .md)" --body-file "$report"
             fi

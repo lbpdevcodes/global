@@ -1,0 +1,36 @@
+{
+  "head" : {
+    "vars" : [ "person", "party", "partyLabel" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "person" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q20089181"
+      },
+      "party" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q23731823"
+      },
+      "partyLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Renaissance"
+      }
+    }, {
+      "person" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q22686"
+      },
+      "party" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q29468"
+      },
+      "partyLabel" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Republican Party"
+      }
+    } ]
+  }
+}

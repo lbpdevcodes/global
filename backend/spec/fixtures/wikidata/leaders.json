@@ -1,0 +1,1043 @@
+{
+ "head": {
+  "vars": [
+   "item",
+   "role",
+   "person",
+   "personLabel",
+   "rank",
+   "start",
+   "office",
+   "officeLabel"
+  ]
+ },
+ "results": {
+  "bindings": [
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q28"
+    },
+    "role": {
+     "type": "literal",
+     "value": "state"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q28599854"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2024-03-05T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q520765"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Tamás Sulyok"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "President of Hungary"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q30"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#PreferredRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q22686"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2025-01-20T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q11696"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Donald Trump"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "President of the United States"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q30"
+    },
+    "role": {
+     "type": "literal",
+     "value": "state"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q22686"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2025-01-20T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q11696"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Donald Trump"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "President of the United States"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q286417"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Émile Reuter"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q739463"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Charles-Mathias Simons"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q269726"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Emmanuel Servais"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q975968"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Léon Kauffman"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q315685"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Joseph Bech"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q212178"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Victor de Tornaco"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q706106"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Pierre Frieden"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q665685"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Mathias Mongenast"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q725755"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Gaspard-Théodore-Ignace de la Fontaine"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q738855"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Jean-Jacques Willmar"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q730154"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Hubert Loutsch"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q945927"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Pierre Dupong"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q274460"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Édouard Thilges"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q981324"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Pierre Prüm"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#PreferredRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q592101"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2023-11-17T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Luc Frieden"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q641102"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Félix de Blochausen"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q945406"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Paul Eyschen"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q976032"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1344632"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Victor Thorn"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q683"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q5446290"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2021-05-24T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1277355"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Fiamē Naomi Mataʻafa"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Samoa"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q683"
+    },
+    "role": {
+     "type": "literal",
+     "value": "state"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q57723"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "1998-11-23T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1258128"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Tuilaʻepa Saʻilele Malielegaoi"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "O le Ao o le Malo"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q683"
+    },
+    "role": {
+     "type": "literal",
+     "value": "state"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#PreferredRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32014514"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2017-07-21T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1258128"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Va'aletoa Sualauvi II"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "O le Ao o le Malo"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q683"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#NormalRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q57723"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "1998-11-23T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1277355"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Tuilaʻepa Saʻilele Malielegaoi"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Samoa"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q28"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#PreferredRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q124488292"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2026-05-09T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q3315094"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Péter Magyar"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of Hungary"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q32"
+    },
+    "role": {
+     "type": "literal",
+     "value": "state"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#PreferredRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q161319"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2025-10-03T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q3276071"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Guillaume V, Grand Duke of Luxembourg"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Grand Duke of Luxembourg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q142"
+    },
+    "role": {
+     "type": "literal",
+     "value": "government"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#PreferredRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q20089181"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2025-09-09T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q1587677"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Sébastien Lecornu"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Prime Minister of France"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q142"
+    },
+    "role": {
+     "type": "literal",
+     "value": "state"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#PreferredRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q3052772"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2017-05-14T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q191954"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Emmanuel Macron"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "President of the French Republic"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q28"
+    },
+    "role": {
+     "type": "literal",
+     "value": "state"
+    },
+    "rank": {
+     "type": "uri",
+     "value": "http://wikiba.se/ontology#PreferredRank"
+    },
+    "person": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q788903"
+    },
+    "start": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2026-08-19T00:00:00Z"
+    },
+    "office": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q520765"
+    },
+    "personLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "András Baka"
+    },
+    "officeLabel": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "President of Hungary"
+    }
+   }
+  ]
+ }
+}

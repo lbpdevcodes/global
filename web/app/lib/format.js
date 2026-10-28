@@ -26,7 +26,7 @@ const FORMATTERS = {
 };
 
 function officeHolder({ name, title, since }) {
-  return `${name}, ${title} (since ${since.slice(0, 4)})`;
+  return since ? `${name}, ${title} (since ${since.slice(0, 4)})` : `${name}, ${title}`;
 }
 
 // A field's value as text for the panel.

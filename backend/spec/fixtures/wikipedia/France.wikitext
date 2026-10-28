@@ -1,0 +1,9 @@
+{{Infobox country
+| conventional_long_name = French Republic
+| government_type = Unitary semi-presidential republic
+| leader_title1 = [[President of France|President]]
+| leader_name1 = [[Emmanuel Macron]]
+| leader_title2 = [[Prime Minister of France|Prime Minister]]
+| leader_name2 = [[Sébastien Lecornu]]
+| legislature = [[French Parliament|Parliament]]
+}}

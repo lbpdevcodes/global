@@ -24,4 +24,19 @@ namespace :data do
     puts report.to_markdown.lines.first
     abort "Stale fields found: see tmp/freshness.md" if report.stale.any?
   end
+
+  desc "List leadership and ruling-party changes from the last day; writes tmp/changes.md when there are any"
+  task changes: :environment do
+    report = ChangeReport.new(since: 23.hours.ago)
+    path = Rails.root.join("tmp/changes.md")
+    report.changes.any? ? path.write(report.to_markdown) : FileUtils.rm_f(path)
+    puts report.to_markdown.lines.first
+  end
+
+  desc "Compare N random profiles' leaders and ruling party with Wikipedia; writes tmp/spot-check.md"
+  task :spot_check, [:sample] => :environment do |_task, args|
+    check = SpotCheck.new(sample: Integer(args.fetch(:sample, 20)))
+    Rails.root.join("tmp/spot-check.md").write(check.to_markdown)
+    puts check.to_markdown
+  end
 end
