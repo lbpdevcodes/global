@@ -26,4 +26,10 @@ RSpec.describe HttpFetcher do
     expect { HttpFetcher.new.get_json(url) }
       .to raise_error(HttpFetcher::Error, "GET #{url} returned HTTP 403")
   end
+
+  it "returns a text body as UTF-8" do
+    stub_request(:get, url).to_return(body: "entity,code\nCôte d'Ivoire,CIV\n".b)
+
+    expect(HttpFetcher.new.get_text(url)).to eq("entity,code\nCôte d'Ivoire,CIV\n")
+  end
 end

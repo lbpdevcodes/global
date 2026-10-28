@@ -1,8 +1,11 @@
 module Snapshot
   # One entity's row in the index.
   class IndexEntry
-    LAYERS = {"governmentType" => "government.governmentType", "democracyScore" => "government.democracyScore",
-              "population" => "people.population", "conflictStatus" => "tensions.conflictStatus"}
+    # Each layer's field, and how to reduce the field's value to what the map colors by.
+    LAYERS = {"governmentType" => ["government.governmentType", :itself.to_proc],
+              "democracyScore" => ["government.democracyScore", ->(value) { value["score"] }],
+              "population" => ["people.population", :itself.to_proc],
+              "conflictStatus" => ["tensions.conflictStatus", :itself.to_proc]}
 
     def initialize(entity, facts)
       @entity = entity
@@ -30,13 +33,13 @@ module Snapshot
     def layers
       return if entity.territory?
 
-      LAYERS.transform_values { |field_key| layer(facts.for(entity, field_key)) }
+      LAYERS.transform_values { |field_key, reduce| layer(facts.for(entity, field_key), reduce) }
     end
 
-    def layer(observation)
+    def layer(observation, reduce)
       return if observation.nil?
 
-      SourcedField.from(observation).slice("value", "asOf")
+      SourcedField.from(observation).slice("asOf").merge("value" => reduce.call(observation.value))
     end
 
     def note

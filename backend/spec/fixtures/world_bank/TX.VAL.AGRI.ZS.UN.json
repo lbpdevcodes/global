@@ -1,0 +1,72 @@
+[
+ {
+  "page": 1,
+  "pages": 1,
+  "per_page": 20000,
+  "total": 246,
+  "sourceid": null,
+  "lastupdated": "2026-10-08"
+ },
+ [
+  {
+   "indicator": {
+    "id": "TX.VAL.AGRI.ZS.UN",
+    "value": "Agricultural raw materials exports (% of merchandise exports)"
+   },
+   "country": {
+    "id": "1W",
+    "value": "World"
+   },
+   "countryiso3code": "WLD",
+   "date": "2025",
+   "value": 1.13504216471839,
+   "obs_status": "",
+   "decimal": 0
+  },
+  {
+   "indicator": {
+    "id": "TX.VAL.AGRI.ZS.UN",
+    "value": "Agricultural raw materials exports (% of merchandise exports)"
+   },
+   "country": {
+    "id": "ER",
+    "value": "Eritrea"
+   },
+   "countryiso3code": "ERI",
+   "date": "2003",
+   "value": null,
+   "obs_status": "",
+   "decimal": 0
+  },
+  {
+   "indicator": {
+    "id": "TX.VAL.AGRI.ZS.UN",
+    "value": "Agricultural raw materials exports (% of merchandise exports)"
+   },
+   "country": {
+    "id": "FR",
+    "value": "France"
+   },
+   "countryiso3code": "FRA",
+   "date": "2025",
+   "value": 0.965115560921128,
+   "obs_status": "",
+   "decimal": 0
+  },
+  {
+   "indicator": {
+    "id": "TX.VAL.AGRI.ZS.UN",
+    "value": "Agricultural raw materials exports (% of merchandise exports)"
+   },
+   "country": {
+    "id": "PS",
+    "value": "West Bank and Gaza"
+   },
+   "countryiso3code": "PSE",
+   "date": "2023",
+   "value": 0.763068238375391,
+   "obs_status": "",
+   "decimal": 0
+  }
+ ]
+]

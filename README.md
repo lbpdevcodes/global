@@ -57,10 +57,28 @@ cd web && node scripts/build-borders.js --simplify=12%
 
 ## Deployment
 
-The `Deploy web` workflow publishes commits that passed `CI web` to Cloudflare Pages. It is
-skipped until these are set in the GitHub repository:
+Two workflows deploy to Cloudflare Pages, and both share one concurrency group:
+- **`Daily refresh`** (05:15 UTC) refreshes the sources, publishes and archives a snapshot to
+  R2, then builds and deploys.
+- **`Deploy web`** ships code that passed `CI web`, using the latest snapshot.
 
-- the variable `PAGES_PROJECT` (the Pages project name);
-- the secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+Both stay skipped until these are set in the GitHub repository:
+
+| Kind | Name | What |
+|---|---|---|
+| Variable | `PAGES_PROJECT` | Cloudflare Pages project name |
+| Variable | `R2_BUCKET`, `R2_ENDPOINT` | R2 bucket and `https://<account>.r2.cloudflarestorage.com` |
+| Secret | `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` | Pages deploys |
+| Secret | `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` | R2 access key for the database, snapshots and backups |
+| Secret | `RAILS_MASTER_KEY` | Contents of `backend/config/master.key` (decrypts the REST Countries key) |
+| Secret | `HEALTHCHECK_URL` | Optional dead-man's-switch ping, e.g. healthchecks.io |
+
+**First run:** trigger `Daily refresh` by hand with "start from an empty database" ticked. Every
+later run refuses to start if the stored database cannot be fetched.
+
+**Alerts:** failed sources and stale fields open a GitHub issue.
+
+**Rollback:** sync an older `snapshots/<id>/data/v1` over `latest/data/v1` in R2, then re-run
+`Deploy web`.
 
 Borders: Made with Natural Earth.

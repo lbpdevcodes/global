@@ -19,7 +19,8 @@ module Sources
          "header.iso2" => data.dig("codes", "alpha_2"), "header.iso3" => data.dig("codes", "alpha_3"),
          "people.officialLanguages" => data["languages"]&.pluck("name"),
          "index.aliases" => names["alternates"], "index.centroid" => data["coordinates"]&.slice("lat", "lng"),
-         "territory.status" => data.dig("classification", "dependency_type").presence}
+         "territory.status" => data.dig("classification", "dependency_type").presence,
+         "government.recognitionStatus" => recognition}
       end
 
       private
@@ -28,6 +29,11 @@ module Sources
 
       def names
         data.fetch("names", {})
+      end
+
+      # UN members only; other entities' recognition is reviewed editorially.
+      def recognition
+        {"status" => "full", "note" => nil} if data.dig("classification", "un_member")
       end
 
       def capital

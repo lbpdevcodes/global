@@ -1,0 +1,35 @@
+# Reviewed editorial values (docs/adr/0006). Use only where no structured
+# source covers a field. Each value carries its own source, and its asOf is the
+# review date, so it shows "may be outdated" once its refresh window passes:
+# re-check the source and bump reviewed_on to keep it fresh. Changes go
+# through pull requests.
+- code: PSE
+  field: government.recognitionStatus
+  value: {status: partial, note: "UN non-member observer state; recognized by most UN member states"}
+  source_url: https://en.wikipedia.org/wiki/International_recognition_of_Palestine
+  reviewed_on: 2026-10-27
+  reason: No structured source records recognition by other states.
+- code: VAT
+  field: government.recognitionStatus
+  value: {status: full, note: "The Holy See is a UN non-member observer state"}
+  source_url: https://www.un.org/en/about-us/non-member-states
+  reviewed_on: 2026-10-27
+  reason: REST Countries marks only UN members as such; the Holy See is an observer.
+- code: TWN
+  field: government.recognitionStatus
+  value: {status: partial, note: "Not a UN member; has formal diplomatic relations with a small number of states"}
+  source_url: https://en.wikipedia.org/wiki/Foreign_relations_of_Taiwan
+  reviewed_on: 2026-10-27
+  reason: No structured source records recognition by other states.
+- code: XKX
+  field: government.recognitionStatus
+  value: {status: partial, note: "Not a UN member; recognized by some UN member states"}
+  source_url: https://en.wikipedia.org/wiki/International_recognition_of_Kosovo
+  reviewed_on: 2026-10-27
+  reason: No structured source records recognition by other states.
+- code: ESH
+  field: government.recognitionStatus
+  value: {status: disputed, note: "Listed by the UN as a non-self-governing territory; sovereignty is disputed between Morocco and the Sahrawi Arab Democratic Republic"}
+  source_url: https://www.un.org/dppa/decolonization/en/nsgt/western-sahara
+  reviewed_on: 2026-10-27
+  reason: No structured source records the territory's status.

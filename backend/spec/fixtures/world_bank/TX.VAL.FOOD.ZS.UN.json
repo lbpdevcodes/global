@@ -1,0 +1,72 @@
+[
+ {
+  "page": 1,
+  "pages": 1,
+  "per_page": 20000,
+  "total": 246,
+  "sourceid": null,
+  "lastupdated": "2026-10-08"
+ },
+ [
+  {
+   "indicator": {
+    "id": "TX.VAL.FOOD.ZS.UN",
+    "value": "Food exports (% of merchandise exports)"
+   },
+   "country": {
+    "id": "1W",
+    "value": "World"
+   },
+   "countryiso3code": "WLD",
+   "date": "2025",
+   "value": 9.01444502410143,
+   "obs_status": "",
+   "decimal": 0
+  },
+  {
+   "indicator": {
+    "id": "TX.VAL.FOOD.ZS.UN",
+    "value": "Food exports (% of merchandise exports)"
+   },
+   "country": {
+    "id": "ER",
+    "value": "Eritrea"
+   },
+   "countryiso3code": "ERI",
+   "date": "2003",
+   "value": null,
+   "obs_status": "",
+   "decimal": 0
+  },
+  {
+   "indicator": {
+    "id": "TX.VAL.FOOD.ZS.UN",
+    "value": "Food exports (% of merchandise exports)"
+   },
+   "country": {
+    "id": "FR",
+    "value": "France"
+   },
+   "countryiso3code": "FRA",
+   "date": "2025",
+   "value": 13.3676574037968,
+   "obs_status": "",
+   "decimal": 0
+  },
+  {
+   "indicator": {
+    "id": "TX.VAL.FOOD.ZS.UN",
+    "value": "Food exports (% of merchandise exports)"
+   },
+   "country": {
+    "id": "PS",
+    "value": "West Bank and Gaza"
+   },
+   "countryiso3code": "PSE",
+   "date": "2023",
+   "value": 21.3953024551424,
+   "obs_status": "",
+   "decimal": 0
+  }
+ ]
+]

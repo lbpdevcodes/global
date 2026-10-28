@@ -11,7 +11,11 @@
 - **Stale** means `today - asOf > refresh window + 1 day`. Refresh windows live in
   `config/fields.yml`: daily 1, weekly 7, monthly 31, yearly 366. Stale fields show
   "may be outdated".
-- **Alert** when any field's `asOf` is more than 7 days old. This enforces the PRD's v1 bar.
+- **Alert** when any field is stale. `bin/rails data:freshness` writes `tmp/freshness.md` and
+  exits non-zero, and the daily workflow opens a GitHub issue. Alerting at the first stale day
+  leaves a week to fix it within the PRD's "never more than 7 days stale" bar.
+- **Editorial overrides** are dated by their review (ADR 0006), so they go stale and prompt a
+  re-review.
 - **Every source must be fetchable by the daily job.** A source that can't be, such as a manual
   dataset import, needs a documented exception here.
 

@@ -1,7 +1,12 @@
 # Runs every source and records what it reports. A failing source is reported
 # and skipped, so its fields keep their last good values.
 class Refresh
-  Summary = Data.define(:recorded, :unmatched_codes, :failures)
+  Summary = Data.define(:recorded, :unmatched_codes, :failures) do
+    def failures_markdown
+      lines = failures.map { |source, reason| "- **#{source}**: #{reason}" }
+      ["Sources that failed today kept their last good values:", "", *lines].join("\n")
+    end
+  end
 
   def initialize(sources:, recorder: Observations::Recorder.new)
     @sources = sources

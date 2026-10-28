@@ -7,6 +7,13 @@ module FieldCatalog
     def name = key.split(".").last
   end
 
+  # Fields the index carries that are not shown as profile rows.
+  INDEX_ONLY = %w[index.aliases index.centroid territory.status tensions.conflictStatus]
+
+  def self.known?(key)
+    INDEX_ONLY.include?(key) || all.any? { it.key == key }
+  end
+
   def self.all
     @all ||= JSON.parse(Rails.root.join("../contracts/v1/fields.json").read).fetch("fields")
       .map { Field.new(key: it["key"], label: it["label"], refresh_days: it["refreshDays"]) }

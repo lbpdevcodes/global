@@ -37,4 +37,17 @@ RSpec.describe Snapshot::CountryProfile do
 
     expect(contract_errors("country", profile)).to be_empty
   end
+
+  it "prefers a reviewed editorial override to a recorded observation" do
+    observe(france, "government.recognitionStatus", {"status" => "full", "note" => nil})
+    override = {"code" => "FRA", "field" => "government.recognitionStatus",
+                "value" => {"status" => "full", "note" => "Reviewed note"}, "source_url" => "https://example.org/fr",
+                "reviewed_on" => "2026-10-20", "reason" => "test"}
+    facts = Snapshot::Facts.load(overrides: Overrides.new([override]))
+
+    profile = Snapshot::CountryProfile.new(france, facts, generated_at: generated_at).to_h
+
+    expect(profile.dig("government", "recognitionStatus", "value", "note")).to eq("Reviewed note")
+    expect(profile.dig("meta", "sources")).to include("name" => "Editorial review", "url" => a_string_including("overrides.yml"))
+  end
 end

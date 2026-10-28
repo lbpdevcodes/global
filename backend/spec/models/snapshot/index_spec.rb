@@ -51,4 +51,11 @@ RSpec.describe Snapshot::Index do
 
     expect(entry("ESH")["note"]).to be_nil
   end
+
+  it "colors the democracy layer by the score alone" do
+    observe(denmark, "government.democracyScore",
+      {"score" => 0.91, "index" => "V-Dem Electoral Democracy Index", "scaleMin" => 0, "scaleMax" => 1}, period: "2025")
+
+    expect(entry("DNK").dig("layers", "democracyScore")).to eq("value" => 0.91, "asOf" => "2026-10-27")
+  end
 end

@@ -6,3 +6,23 @@ shared:
     url: https://restcountries.com/
     access: API key (free plan), sent as a bearer token
     terms_checked_on: 2026-10-27
+  world_bank:
+    name: World Bank, World Development Indicators
+    url: https://data.worldbank.org/
+    access: Keyless API; data licensed CC BY 4.0
+    terms_checked_on: 2026-10-27
+  vdem:
+    name: V-Dem Electoral Democracy Index (via Our World in Data)
+    url: https://ourworldindata.org/grapher/electoral-democracy-index
+    access: Keyless CSV; cite "V-Dem (2026) – processed by Our World in Data"; V-Dem's own license to confirm
+    terms_checked_on: 2026-10-27
+  wikidata:
+    name: Wikidata
+    url: https://www.wikidata.org/
+    access: Keyless SPARQL endpoint; data CC0; User-Agent required by Wikimedia policy
+    terms_checked_on: 2026-10-27
+  editorial:
+    name: Editorial review
+    url: https://github.com/lbpdevcodes/global/blob/main/backend/config/overrides.yml
+    access: Reviewed values in config/overrides.yml, each linking its own source
+    terms_checked_on: 2026-10-27

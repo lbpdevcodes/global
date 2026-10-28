@@ -7,6 +7,8 @@ RSpec.describe Sources::RestCountries do
   let(:source) { Sources::RestCountries.new(fetcher: fetcher, api_key: "test-key") }
   let(:observed) { source.observations }
 
+  it_behaves_like "a source"
+
   def value(code, field_key)
     observed.find { it.entity_code == code && it.field_key == field_key }&.value
   end
@@ -56,5 +58,10 @@ RSpec.describe Sources::RestCountries do
   it "attributes every value to REST Countries" do
     expect(observed.map { [it.source_key, it.source_url] }.uniq)
       .to eq([["rest_countries", "https://restcountries.com/"]])
+  end
+
+  it "reports UN members as fully recognized and leaves others' recognition to editorial review" do
+    expect(value("FRA", "government.recognitionStatus")).to eq("status" => "full", "note" => nil)
+    expect(value("XKX", "government.recognitionStatus")).to be_nil
   end
 end

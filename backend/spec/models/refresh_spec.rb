@@ -42,4 +42,11 @@ RSpec.describe Refresh do
 
     expect(summary.recorded).to eq(1)
   end
+
+  it "describes failed sources as Markdown for the daily alert" do
+    summary = Refresh::Summary.new(recorded: 3, unmatched_codes: {}, failures: {"vdem" => "HttpFetcher::Error: GET x returned HTTP 503"})
+
+    expect(summary.failures_markdown).to eq("Sources that failed today kept their last good values:\n\n" \
+      "- **vdem**: HttpFetcher::Error: GET x returned HTTP 503")
+  end
 end

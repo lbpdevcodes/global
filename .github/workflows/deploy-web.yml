@@ -1,7 +1,7 @@
 name: Deploy web
 
-# Deploys only commits that passed CI web. Skipped until the Cloudflare Pages
-# project exists (repository variable PAGES_PROJECT).
+# Deploys only commits that passed CI web, with the latest published snapshot.
+# Skipped until Pages and R2 are configured (variables PAGES_PROJECT, R2_BUCKET).
 on:
   workflow_run:
     workflows: [CI web]
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   deploy:
     if: >-
-      vars.PAGES_PROJECT != '' &&
+      vars.PAGES_PROJECT != '' && vars.R2_BUCKET != '' &&
       (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     defaults:
@@ -34,6 +34,13 @@ jobs:
           cache: npm
           cache-dependency-path: web/package-lock.json
       - run: npm ci
+      - name: Fetch the latest snapshot
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+        run: aws s3 sync "s3://${{ vars.R2_BUCKET }}/latest/data/v1" data/v1 --endpoint-url "${{ vars.R2_ENDPOINT }}" --only-show-errors
+      - run: npm run check:coverage
       - run: npm run build
       - run: npx wrangler pages deploy build/client --project-name="$PAGES_PROJECT" --branch=main
         env:
