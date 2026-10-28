@@ -1,6 +1,7 @@
 # Geopolitical Globe
 
 A spinnable 3D globe where clicking any country opens a sourced, dated geopolitical profile.
+Live at https://geopolitical-globe.pages.dev.
 
 Two halves joined by a versioned JSON contract (see `docs/adr/0001-stack.md`):
 
