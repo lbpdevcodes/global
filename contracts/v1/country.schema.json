@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.geoglobe.invalid/v1/country.schema.json",
+  "title": "Country profile",
+  "description": "One profiled entity. Every fact is a sourced field or null; the reader hides null rows.",
+  "type": "object",
+  "required": ["code", "header", "leadership", "government", "people", "economy", "politics", "tensions", "meta"],
+  "additionalProperties": false,
+  "properties": {
+    "code": { "$ref": "#/$defs/code" },
+    "header": {
+      "type": "object",
+      "required": ["name", "officialName", "capital", "flagEmoji", "iso2", "iso3"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "$ref": "#/$defs/stringField" },
+        "officialName": { "$ref": "#/$defs/stringField" },
+        "capital": { "$ref": "#/$defs/stringField" },
+        "flagEmoji": { "$ref": "#/$defs/stringField" },
+        "iso2": { "$ref": "#/$defs/stringField" },
+        "iso3": { "$ref": "#/$defs/stringField" }
+      }
+    },
+    "leadership": {
+      "type": "object",
+      "required": ["headOfState", "headOfGovernment", "nextNationalElection"],
+      "additionalProperties": false,
+      "properties": {
+        "headOfState": { "$ref": "#/$defs/officeHolderField" },
+        "headOfGovernment": { "$ref": "#/$defs/officeHolderField" },
+        "nextNationalElection": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "$ref": "#/$defs/sourced",
+              "properties": {
+                "value": {
+                  "type": "object",
+                  "required": ["type", "date"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": { "type": "string", "minLength": 1 },
+                    "date": { "$ref": "#/$defs/partialDate" }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "government": {
+      "type": "object",
+      "required": ["governmentType", "democracyScore", "recognitionStatus"],
+      "additionalProperties": false,
+      "properties": {
+        "governmentType": { "$ref": "#/$defs/stringField" },
+        "democracyScore": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "$ref": "#/$defs/sourced",
+              "properties": {
+                "value": {
+                  "type": "object",
+                  "required": ["score", "index", "scaleMin", "scaleMax"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "score": { "type": "number" },
+                    "index": { "type": "string", "minLength": 1 },
+                    "scaleMin": { "type": "number" },
+                    "scaleMax": { "type": "number" }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "recognitionStatus": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "$ref": "#/$defs/sourced",
+              "properties": {
+                "value": {
+                  "type": "object",
+                  "required": ["status", "note"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "status": { "enum": ["full", "partial", "disputed"] },
+                    "note": { "type": ["string", "null"] }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "people": {
+      "type": "object",
+      "required": ["population", "officialLanguages", "majorReligions"],
+      "additionalProperties": false,
+      "properties": {
+        "population": { "$ref": "#/$defs/numberField" },
+        "officialLanguages": { "$ref": "#/$defs/stringListField" },
+        "majorReligions": { "$ref": "#/$defs/stringListField" }
+      }
+    },
+    "economy": {
+      "type": "object",
+      "required": ["gdpUsd", "gdpPerCapitaUsd", "topExports", "topTradePartners"],
+      "additionalProperties": false,
+      "properties": {
+        "gdpUsd": { "$ref": "#/$defs/numberField" },
+        "gdpPerCapitaUsd": { "$ref": "#/$defs/numberField" },
+        "topExports": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "$ref": "#/$defs/sourced",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "maxItems": 5,
+                  "items": {
+                    "type": "object",
+                    "required": ["product", "sharePercent"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "product": { "type": "string", "minLength": 1 },
+                      "sharePercent": { "type": "number", "minimum": 0, "maximum": 100 }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "topTradePartners": { "$ref": "#/$defs/stringListField" }
+      }
+    },
+    "politics": {
+      "type": "object",
+      "required": ["rulingPartyOrCoalition", "majorParties", "alliances"],
+      "additionalProperties": false,
+      "properties": {
+        "rulingPartyOrCoalition": { "$ref": "#/$defs/stringListField" },
+        "majorParties": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "$ref": "#/$defs/sourced",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["name", "ideology", "seats"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": { "type": "string", "minLength": 1 },
+                      "ideology": { "type": ["string", "null"] },
+                      "seats": { "type": ["integer", "null"], "minimum": 0 }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "alliances": { "$ref": "#/$defs/stringListField" }
+      }
+    },
+    "tensions": {
+      "type": "object",
+      "required": ["items"],
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title", "parties", "status", "statusLabel", "sourceUrl", "asOf"],
+            "additionalProperties": false,
+            "properties": {
+              "title": { "type": "string", "minLength": 1 },
+              "parties": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+              "status": { "enum": ["active_conflict", "tension", "dispute"] },
+              "statusLabel": { "type": "string", "minLength": 1, "description": "The source's own status wording." },
+              "sourceUrl": { "type": "string", "format": "uri" },
+              "asOf": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "required": ["lastUpdated", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "lastUpdated": { "type": "string", "format": "date-time" },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "url"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "url": { "type": "string", "format": "uri" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "code": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "partialDate": {
+      "type": "string",
+      "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$",
+      "description": "A year, year-month, or full date."
+    },
+    "sourced": {
+      "description": "Every fact carries where it came from and when it was last confirmed. `period` is the year the data describes, when that differs from asOf.",
+      "type": "object",
+      "required": ["value", "source", "asOf"],
+      "properties": {
+        "value": true,
+        "source": { "type": "string", "format": "uri" },
+        "asOf": { "type": "string", "format": "date" },
+        "period": { "$ref": "#/$defs/partialDate" }
+      },
+      "additionalProperties": false
+    },
+    "stringField": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/sourced", "properties": { "value": { "type": "string", "minLength": 1 } } }
+      ]
+    },
+    "numberField": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/sourced", "properties": { "value": { "type": "number" } } }
+      ]
+    },
+    "stringListField": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "$ref": "#/$defs/sourced",
+          "properties": { "value": { "type": "array", "items": { "type": "string", "minLength": 1 } } }
+        }
+      ]
+    },
+    "officeHolderField": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "$ref": "#/$defs/sourced",
+          "properties": {
+            "value": {
+              "type": "object",
+              "required": ["name", "title", "since"],
+              "additionalProperties": false,
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "since": { "$ref": "#/$defs/partialDate" }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

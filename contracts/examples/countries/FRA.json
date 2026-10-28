@@ -1,0 +1,175 @@
+{
+  "code": "FRA",
+  "header": {
+    "name": {
+      "value": "France",
+      "source": "https://restcountries.com/v3.1/alpha/FRA",
+      "asOf": "2026-10-27"
+    },
+    "officialName": {
+      "value": "French Republic",
+      "source": "https://restcountries.com/v3.1/alpha/FRA",
+      "asOf": "2026-10-27"
+    },
+    "capital": {
+      "value": "Paris",
+      "source": "https://restcountries.com/v3.1/alpha/FRA",
+      "asOf": "2026-10-27"
+    },
+    "flagEmoji": {
+      "value": "🇫🇷",
+      "source": "https://restcountries.com/v3.1/alpha/FRA",
+      "asOf": "2026-10-27"
+    },
+    "iso2": {
+      "value": "FR",
+      "source": "https://restcountries.com/v3.1/alpha/FRA",
+      "asOf": "2026-10-27"
+    },
+    "iso3": {
+      "value": "FRA",
+      "source": "https://restcountries.com/v3.1/alpha/FRA",
+      "asOf": "2026-10-27"
+    }
+  },
+  "leadership": {
+    "headOfState": {
+      "value": {
+        "name": "Emmanuel Macron",
+        "title": "President",
+        "since": "2017-05-14"
+      },
+      "source": "https://www.wikidata.org/wiki/Q142",
+      "asOf": "2026-10-27"
+    },
+    "headOfGovernment": null,
+    "nextNationalElection": {
+      "value": {
+        "type": "Presidential",
+        "date": "2027"
+      },
+      "source": "https://www.wikidata.org/wiki/Q142",
+      "asOf": "2026-10-27"
+    }
+  },
+  "government": {
+    "governmentType": {
+      "value": "Semi-presidential republic",
+      "source": "https://www.wikidata.org/wiki/Q142",
+      "asOf": "2026-10-27"
+    },
+    "democracyScore": {
+      "value": {
+        "score": 0.82,
+        "index": "V-Dem Electoral Democracy Index",
+        "scaleMin": 0,
+        "scaleMax": 1
+      },
+      "source": "https://v-dem.net/data/",
+      "asOf": "2026-10-27",
+      "period": "2024"
+    },
+    "recognitionStatus": {
+      "value": {
+        "status": "full",
+        "note": null
+      },
+      "source": "https://www.wikidata.org/wiki/Q142",
+      "asOf": "2026-10-27"
+    }
+  },
+  "people": {
+    "population": {
+      "value": 68170000,
+      "source": "https://data.worldbank.org/indicator/SP.POP.TOTL?locations=FR",
+      "asOf": "2026-10-27",
+      "period": "2024"
+    },
+    "officialLanguages": {
+      "value": [
+        "French"
+      ],
+      "source": "https://restcountries.com/v3.1/alpha/FRA",
+      "asOf": "2026-10-27"
+    },
+    "majorReligions": null
+  },
+  "economy": {
+    "gdpUsd": {
+      "value": 3160000000000,
+      "source": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=FR",
+      "asOf": "2026-10-27",
+      "period": "2024"
+    },
+    "gdpPerCapitaUsd": {
+      "value": 46150,
+      "source": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=FR",
+      "asOf": "2026-10-27",
+      "period": "2024"
+    },
+    "topExports": {
+      "value": [
+        {
+          "product": "Aircraft",
+          "sharePercent": 9
+        }
+      ],
+      "source": "https://oec.world/en/profile/country/fra",
+      "asOf": "2026-10-27",
+      "period": "2023"
+    },
+    "topTradePartners": {
+      "value": [
+        "Germany",
+        "Belgium",
+        "Italy"
+      ],
+      "source": "https://oec.world/en/profile/country/fra",
+      "asOf": "2026-10-27",
+      "period": "2023"
+    }
+  },
+  "politics": {
+    "rulingPartyOrCoalition": null,
+    "majorParties": {
+      "value": [
+        {
+          "name": "Renaissance",
+          "ideology": "Liberalism",
+          "seats": null
+        }
+      ],
+      "source": "https://www.wikidata.org/wiki/Q142",
+      "asOf": "2026-10-27"
+    },
+    "alliances": {
+      "value": [
+        "UN",
+        "NATO",
+        "EU"
+      ],
+      "source": "https://www.wikidata.org/wiki/Q142",
+      "asOf": "2026-10-27"
+    }
+  },
+  "tensions": {
+    "items": []
+  },
+  "meta": {
+    "lastUpdated": "2026-10-27T06:00:00Z",
+    "sources": [
+      {
+        "name": "REST Countries",
+        "url": "https://restcountries.com/"
+      },
+      {
+        "name": "Wikidata",
+        "url": "https://www.wikidata.org/"
+      },
+      {
+        "name": "World Bank",
+        "url": "https://data.worldbank.org/"
+      }
+    ]
+  }
+}

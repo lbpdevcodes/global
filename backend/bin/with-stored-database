@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Runs a command against the engine database kept in DATABASE_STORE:
+#
+#   DATABASE_STORE=s3://bucket/prefix   R2, through the aws CLI and R2_ENDPOINT
+#   DATABASE_STORE=/some/directory      a local directory (development, tests)
+#
+# The database is fetched first, and uploaded back with a dated backup only
+# when the command succeeds. A failed run leaves the stored copy untouched.
+set -euo pipefail
+
+store="${DATABASE_STORE:?DATABASE_STORE must be set}"
+database="${ENGINE_DATABASE:-storage/engine.sqlite3}"
+export ENGINE_DATABASE="$database"
+
+fetch() { # fetch <key> <destination>
+  if [[ "$store" == s3://* ]]; then
+    aws s3 cp --only-show-errors --endpoint-url "$R2_ENDPOINT" "$store/$1" "$2"
+  else
+    cp "$store/$1" "$2"
+  fi
+}
+
+push() { # push <source> <key>
+  if [[ "$store" == s3://* ]]; then
+    aws s3 cp --only-show-errors --endpoint-url "$R2_ENDPOINT" "$1" "$store/$2"
+  else
+    mkdir -p "$(dirname "$store/$2")"
+    cp "$1" "$store/$2"
+  fi
+}
+
+rm -f "$database" "$database-wal" "$database-shm"
+if ! fetch engine.sqlite3 "$database"; then
+  if [[ "${ALLOW_EMPTY_DATABASE:-}" != "1" ]]; then
+    echo "Could not fetch the stored database from $store; refusing to start from an empty one." >&2
+    echo "Set ALLOW_EMPTY_DATABASE=1 only for the very first run." >&2
+    exit 1
+  fi
+  echo "Starting from an empty database (ALLOW_EMPTY_DATABASE=1)." >&2
+fi
+
+"$@"
+
+workdir="$(mktemp -d)"
+trap 'rm -rf "$workdir"' EXIT
+sqlite3 "$database" "VACUUM INTO '$workdir/engine.sqlite3'"
+push "$workdir/engine.sqlite3" "backups/engine-$(date -u +%Y%m%dT%H%M%SZ).sqlite3"
+push "$workdir/engine.sqlite3" engine.sqlite3

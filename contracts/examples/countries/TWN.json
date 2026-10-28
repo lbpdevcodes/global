@@ -1,0 +1,92 @@
+{
+  "code": "TWN",
+  "header": {
+    "name": {
+      "value": "Taiwan",
+      "source": "https://restcountries.com/v3.1/alpha/TWN",
+      "asOf": "2026-10-27"
+    },
+    "officialName": {
+      "value": "Republic of China",
+      "source": "https://restcountries.com/v3.1/alpha/TWN",
+      "asOf": "2026-10-27"
+    },
+    "capital": {
+      "value": "Taipei",
+      "source": "https://restcountries.com/v3.1/alpha/TWN",
+      "asOf": "2026-10-27"
+    },
+    "flagEmoji": {
+      "value": "🇹🇼",
+      "source": "https://restcountries.com/v3.1/alpha/TWN",
+      "asOf": "2026-10-27"
+    },
+    "iso2": {
+      "value": "TW",
+      "source": "https://restcountries.com/v3.1/alpha/TWN",
+      "asOf": "2026-10-27"
+    },
+    "iso3": {
+      "value": "TWN",
+      "source": "https://restcountries.com/v3.1/alpha/TWN",
+      "asOf": "2026-10-27"
+    }
+  },
+  "leadership": {
+    "headOfState": null,
+    "headOfGovernment": null,
+    "nextNationalElection": null
+  },
+  "government": {
+    "governmentType": null,
+    "democracyScore": null,
+    "recognitionStatus": {
+      "value": {
+        "status": "partial",
+        "note": "Recognized by a small number of UN member states"
+      },
+      "source": "https://www.wikidata.org/wiki/Q865",
+      "asOf": "2026-10-27"
+    }
+  },
+  "people": {
+    "population": null,
+    "officialLanguages": null,
+    "majorReligions": null
+  },
+  "economy": {
+    "gdpUsd": null,
+    "gdpPerCapitaUsd": null,
+    "topExports": null,
+    "topTradePartners": null
+  },
+  "politics": {
+    "rulingPartyOrCoalition": null,
+    "majorParties": null,
+    "alliances": null
+  },
+  "tensions": {
+    "items": [
+      {
+        "title": "Cross-Strait tensions",
+        "parties": [
+          "Taiwan",
+          "China"
+        ],
+        "status": "tension",
+        "statusLabel": "Tension",
+        "sourceUrl": "https://www.crisisgroup.org/crisiswatch",
+        "asOf": "2026-10-27"
+      }
+    ]
+  },
+  "meta": {
+    "lastUpdated": "2026-10-27T06:00:00Z",
+    "sources": [
+      {
+        "name": "REST Countries",
+        "url": "https://restcountries.com/"
+      }
+    ]
+  }
+}

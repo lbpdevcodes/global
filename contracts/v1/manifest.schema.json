@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.geoglobe.invalid/v1/manifest.schema.json",
+  "title": "Snapshot manifest",
+  "type": "object",
+  "required": ["snapshotId", "schemaVersion", "generatedAt", "counts"],
+  "additionalProperties": false,
+  "properties": {
+    "snapshotId": { "type": "string", "minLength": 1 },
+    "schemaVersion": { "type": "string", "pattern": "^1\\.\\d+$" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "counts": {
+      "type": "object",
+      "required": ["entities", "profiles"],
+      "additionalProperties": false,
+      "properties": {
+        "entities": { "type": "integer", "minimum": 0 },
+        "profiles": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
