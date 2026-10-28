@@ -11,7 +11,7 @@ class FreshnessReport
 
   def stale
     Entity.profiled.order(:code).flat_map do |entity|
-      FieldCatalog.all.filter_map { |field| stale_field(entity, field) }
+      FieldCatalog.monitored.filter_map { |field| stale_field(entity, field) }
     end
   end
 

@@ -8,9 +8,13 @@ class HttpFetcher
   end
 
   def get_text(url, query: {}, headers: {})
+    get_bytes(url, query: query, headers: headers).force_encoding(Encoding::UTF_8)
+  end
+
+  def get_bytes(url, query: {}, headers: {})
     response = HTTParty.get(url, query: query, headers: headers, timeout: 60)
     raise Error, "GET #{url} returned HTTP #{response.code}" unless response.success?
 
-    response.body.dup.force_encoding(Encoding::UTF_8)
+    response.body.b
   end
 end

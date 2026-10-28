@@ -25,4 +25,10 @@ RSpec.describe FreshnessReport do
 
     expect(report.to_markdown).to include("| France | Population | 2025-01-01 | 366 days |")
   end
+
+  it "watches the armed-conflict list too, on a daily window" do
+    observe(france, "tensions.ucdp", [], source_key: "ucdp", at: Time.zone.parse("2026-10-24 06:00"))
+
+    expect(report.stale.map { [it.field.key, it.field.refresh_days] }).to eq([["tensions.ucdp", 1]])
+  end
 end

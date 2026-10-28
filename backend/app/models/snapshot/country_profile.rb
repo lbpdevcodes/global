@@ -7,8 +7,10 @@ module Snapshot
       @generated_at = generated_at
     end
 
+    TENSION_FIELDS = %w[tensions.ucdp]
+
     def to_h
-      {"code" => entity.code, **sections, "tensions" => {"items" => []},
+      {"code" => entity.code, **sections, "tensions" => {"items" => tension_items},
        "meta" => {"lastUpdated" => generated_at.utc.iso8601, "sources" => sources}}
     end
 
@@ -24,9 +26,16 @@ module Snapshot
 
     def observation(field_key) = facts.for(entity, field_key)
 
+    # Each item is dated by when its source last confirmed it.
+    def tension_items
+      TENSION_FIELDS.filter_map { observation(it) }.flat_map do |observed|
+        observed.value.map { it.merge("asOf" => SourcedField.from(observed)["asOf"]) }
+      end
+    end
+
     def sources
-      FieldCatalog.all.map { observation(it.key) }
-        .compact.map(&:source_key).uniq.sort.map { SourceCatalog.reference(it) }
+      (FieldCatalog.all.map(&:key) + TENSION_FIELDS).filter_map { observation(it) }
+        .map(&:source_key).uniq.sort.map { SourceCatalog.reference(it) }
     end
   end
 end

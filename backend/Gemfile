@@ -43,3 +43,5 @@ end
 gem "httparty", "~> 0.24.3"
 
 gem "csv", "~> 3.3"
+
+gem "rubyzip", "~> 3.7"

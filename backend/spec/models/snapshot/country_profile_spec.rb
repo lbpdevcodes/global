@@ -50,4 +50,13 @@ RSpec.describe Snapshot::CountryProfile do
     expect(profile.dig("government", "recognitionStatus", "value", "note")).to eq("Reviewed note")
     expect(profile.dig("meta", "sources")).to include("name" => "Editorial review", "url" => a_string_including("overrides.yml"))
   end
+
+  it "lists armed conflicts with each item dated by when its source last confirmed it" do
+    item = {"title" => "A vs B", "parties" => ["A", "B"], "status" => "active_conflict",
+            "statusLabel" => "War (1,000+ battle-related deaths in 2025)", "sourceUrl" => "https://ucdp.uu.se/conflict/1"}
+    observe(france, "tensions.ucdp", [item], period: "2025", source_key: "ucdp", source_url: "https://ucdp.uu.se/downloads/")
+
+    expect(profile.dig("tensions", "items")).to eq([item.merge("asOf" => "2026-10-27")])
+    expect(profile.dig("meta", "sources")).to include("name" => "UCDP/PRIO Armed Conflict Dataset", "url" => "https://ucdp.uu.se/downloads/")
+  end
 end

@@ -1,11 +1,18 @@
 module Snapshot
   # One entity's row in the index.
   class IndexEntry
+    # The conflict layer's class: the most serious status among a country's items.
+    CONFLICT_CLASS = lambda do |items|
+      return "active_conflict" if items.any? { it["status"] == "active_conflict" }
+
+      items.any? ? "tension" : "none"
+    end
+
     # Each layer's field, and how to reduce the field's value to what the map colors by.
     LAYERS = {"governmentType" => ["government.governmentType", :itself.to_proc],
               "democracyScore" => ["government.democracyScore", ->(value) { value["score"] }],
               "population" => ["people.population", :itself.to_proc],
-              "conflictStatus" => ["tensions.conflictStatus", :itself.to_proc]}
+              "conflictStatus" => ["tensions.ucdp", CONFLICT_CLASS]}
 
     def initialize(entity, facts)
       @entity = entity

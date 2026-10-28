@@ -58,4 +58,16 @@ RSpec.describe Snapshot::Index do
 
     expect(entry("DNK").dig("layers", "democracyScore")).to eq("value" => 0.91, "asOf" => "2026-10-27")
   end
+
+  it "puts a country with an armed conflict in the active-conflict class of the conflict layer" do
+    observe(denmark, "tensions.ucdp", [{"title" => "x", "status" => "active_conflict"}], source_key: "ucdp")
+
+    expect(entry("DNK").dig("layers", "conflictStatus")).to eq("value" => "active_conflict", "asOf" => "2026-10-27")
+  end
+
+  it "records 'none' when the conflict source confirms no conflict" do
+    observe(denmark, "tensions.ucdp", [], source_key: "ucdp")
+
+    expect(entry("DNK").dig("layers", "conflictStatus", "value")).to eq("none")
+  end
 end
