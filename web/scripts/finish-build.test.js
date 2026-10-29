@@ -45,6 +45,11 @@ describe("finishBuild", () => {
       .toEqual(["https://globe.example/", "https://globe.example/country/DNK"]);
   });
 
+  it("sends a lowercase code to its country's page, since Pages matches file names exactly", () => {
+    expect(readFileSync(join(dir, "_redirects"), "utf8").trim().split("\n"))
+      .toEqual(["/country/dnk /country/DNK 301", "/country/grl /country/GRL 301"]);
+  });
+
   it("points crawlers at the sitemap", () => {
     expect(readFileSync(join(dir, "robots.txt"), "utf8")).toContain("Sitemap: https://globe.example/sitemap.xml");
   });

@@ -48,4 +48,7 @@ The owner builds in Rails and wants v1 small, but without a rewrite when require
     at the trailing-slash URL.
   - The SPA fallback is copied to `404.html`, so an unknown code answers 404 and the app still
     explains it.
+  - A new `_redirects` sends each lowercase code to its page with a 301 (`/country/fra` to
+    `/country/FRA`), because Pages matches file names case-sensitively. `wrangler pages dev`
+    on macOS does not, so only a deployed preview shows the difference.
   - `sitemap.xml` and `robots.txt` are written for search engines.

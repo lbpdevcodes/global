@@ -8,6 +8,7 @@ export function finishBuild(dir, { entities, siteUrl }) {
   // An unknown code, such as /country/ZZZ, gets the app's shell with a 404
   // status, and the app explains that no country has that code.
   copyFileSync(join(dir, "__spa-fallback.html"), join(dir, "404.html"));
+  writeFileSync(join(dir, "_redirects"), lowercaseRedirects(entities));
   writeFileSync(join(dir, "sitemap.xml"), sitemap(entities, siteUrl));
   writeFileSync(join(dir, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${siteUrl}/sitemap.xml\n`);
 }
@@ -24,6 +25,12 @@ function sitemap(entities, siteUrl) {
     "</urlset>",
     "",
   ].join("\n");
+}
+
+// Pages matches a path to a file name exactly, so /country/fra would find no
+// page; each lowercase code is sent to its country's page instead.
+function lowercaseRedirects(entities) {
+  return entities.map(({ code }) => `/country/${code.toLowerCase()} /country/${code} 301\n`).join("");
 }
 
 // Pages serves country/FRA/index.html at /country/FRA/, but the site's links

@@ -11,6 +11,13 @@ test("a country link is served with that country's preview card", async ({ reque
   expect(metaContent(await response.text(), "og:title")).toBe("France · Geopolitical Globe");
 });
 
+test("a lowercase country link is sent to the country's page", async ({ request }) => {
+  const response = await request.get("/country/fra", { maxRedirects: 0 });
+
+  expect(response.status()).toBe(301);
+  expect(response.headers().location).toBe("/country/FRA");
+});
+
 test("an unknown code answers 404 while the app still explains it", async ({ page }) => {
   const response = await page.goto("/country/ZZZ");
 
