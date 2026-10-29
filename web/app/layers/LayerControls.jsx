@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { classify, LAYERS, NO_DATA } from "../lib/layers.js";
+import { blocLayer, blocsIn, classify, LAYERS, NO_DATA, noDataLabel, valueFor } from "../lib/layers.js";
 
 // Choose what colors the globe, read its legend, or read it as a table.
 export function LayerControls({ entities, layer, onChange }) {
@@ -22,6 +22,7 @@ export function LayerControls({ entities, layer, onChange }) {
       </fieldset>
       {layer && (
         <>
+          {layer.bloc && <BlocPicker entities={entities} bloc={layer.bloc} onChange={(bloc) => onChange(blocLayer(bloc))} />}
           <Legend layer={layer} />
           <button type="button" onClick={() => setListOpen(!listOpen)} aria-expanded={listOpen}
             className="mt-2 text-xs text-sky-300 underline hover:text-sky-100">
@@ -34,6 +35,19 @@ export function LayerControls({ entities, layer, onChange }) {
   );
 }
 
+function BlocPicker({ entities, bloc, onChange }) {
+  const id = useId();
+  return (
+    <div className="mt-3 flex items-center gap-2 text-xs">
+      <label htmlFor={id} className="text-neutral-400">Bloc</label>
+      <select id={id} value={bloc} onChange={(event) => onChange(event.target.value)}
+        className="rounded border border-neutral-700 bg-neutral-900 px-2 py-1 text-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-400">
+        {blocsIn(entities).map((name) => <option key={name}>{name}</option>)}
+      </select>
+    </div>
+  );
+}
+
 function Swatch({ color }) {
   return <span aria-hidden="true" className="inline-block h-3 w-3 shrink-0 rounded-sm ring-1 ring-white/20" style={{ background: color }} />;
 }
@@ -42,7 +56,7 @@ function Legend({ layer }) {
   return (
     <div className="mt-3">
       <ul aria-label={`${layer.label} legend`} className="space-y-1">
-        {[...layer.classes.filter((c) => c.label !== "Tension or dispute"), { label: "No data", color: NO_DATA }].map((entry) => (
+        {[...layer.classes.filter((c) => c.label !== "Tension or dispute"), { label: noDataLabel(layer), color: NO_DATA }].map((entry) => (
           <li key={entry.label} className="flex items-center gap-2 text-xs text-neutral-200">
             <Swatch color={entry.color} />{entry.label}
           </li>
@@ -56,8 +70,8 @@ function Legend({ layer }) {
 function LayerTable({ layer, entities }) {
   const rows = entities.filter((e) => e.kind !== "territory").toSorted((a, b) => a.name.localeCompare(b.name))
     .map((entity) => {
-      const value = entity.layers?.[layer.id]?.value;
-      return { entity, group: classify(layer, entity)?.label ?? "No data", text: value == null ? "—" : layer.describe(value) };
+      const value = valueFor(layer, entity);
+      return { entity, group: classify(layer, entity)?.label ?? noDataLabel(layer), text: value == null ? "—" : layer.describe(value) };
     });
   return (
     <div className="mt-2 max-h-64 overflow-y-auto rounded border border-neutral-800">

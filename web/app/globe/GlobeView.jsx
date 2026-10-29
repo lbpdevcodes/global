@@ -1,5 +1,5 @@
 import { useEffect, useEffectEvent, useRef, useState } from "react";
-import { classify, colorsFor } from "../lib/layers.js";
+import { classify, colorsFor, noDataLabel, valueFor } from "../lib/layers.js";
 import { dotTargets } from "./dots.js";
 
 // Yield between evaluating the (large) globe module and building the globe,
@@ -14,10 +14,8 @@ const loadRenderer = async (container, handlers) => {
 // The globe as a React component. Drawing goes through a renderer object
 // (globe.gl in the browser, a fake in tests), created once per mount.
 function layerPaint(layer, entities) {
-  const labels = new Map(entities.map((entity) => {
-    const value = entity.layers?.[layer.id]?.value;
-    return [entity.code, classify(layer, entity) ? layer.describe(value) : "No data"];
-  }));
+  const labels = new Map(entities.map((entity) =>
+    [entity.code, classify(layer, entity) ? layer.describe(valueFor(layer, entity)) : noDataLabel(layer)]));
   return { colors: colorsFor(layer, entities), labels };
 }
 
