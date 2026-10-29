@@ -11,7 +11,7 @@ RSpec.describe Snapshot::Builder do
 
   it "describes the snapshot in the manifest" do
     expect(files["manifest.json"]).to eq(
-      "snapshotId" => "2026-10-27T070000Z", "schemaVersion" => "1.0",
+      "snapshotId" => "2026-10-27T070000Z", "schemaVersion" => "1.1",
       "generatedAt" => "2026-10-27T07:00:00Z", "counts" => {"entities" => 2, "profiles" => 1}
     )
   end

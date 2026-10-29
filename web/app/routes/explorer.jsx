@@ -1,14 +1,13 @@
 import { useNavigate, useParams } from "react-router";
+import { siteUrl } from "virtual:share-cards";
 import { Explorer } from "../explorer/Explorer.jsx";
 import { createSnapshotData } from "../lib/data.js";
+import { shareMeta } from "../lib/share.js";
 
 const data = createSnapshotData();
 
 export function meta() {
-  return [
-    { title: "Geopolitical Globe" },
-    { name: "description", content: "Spin the globe and open any country's sourced, dated geopolitical profile." },
-  ];
+  return shareMeta(undefined, {}, siteUrl);
 }
 
 export default function ExplorerRoute() {

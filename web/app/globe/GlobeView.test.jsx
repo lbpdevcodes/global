@@ -64,4 +64,16 @@ describe("GlobeView", () => {
       colors: new Map([["FRA", "#7b8394"]]), labels: new Map([["FRA", "None recorded"]]),
     }));
   });
+
+  it("labels a country with no value by the layer's own missing-value label", async () => {
+    const { renderer, create } = fakeRenderer();
+    const layer = { id: "nextElection", noData: "No date known", classes: [], describe: () => "" };
+    const undated = { ...france, layers: { nextElection: null } };
+
+    render(<GlobeView borders={borders} entities={[undated]} focus={null} layer={layer} onSelect={vi.fn()} createRenderer={create} />);
+
+    await waitFor(() => expect(renderer.setLayer).toHaveBeenLastCalledWith(
+      expect.objectContaining({ labels: new Map([["FRA", "No date known"]]) }),
+    ));
+  });
 });

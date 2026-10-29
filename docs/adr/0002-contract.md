@@ -12,10 +12,12 @@
   - `period` is the year the data describes, for example `"2024"` for a population figure.
     It replaces the PRD's separate `populationYear` and `year` fields.
   - Unknown values are `null`, and the reader hides those rows.
-- `index.json` carries every entity's names, aliases, kind, parent, centroid, recognition and the
-  four layer values. Search and layers need all entities before any click.
+- `index.json` carries every entity's names, aliases, kind, parent, centroid, recognition and its
+  layer values. Search and layers need all entities before any click.
 - **Versioning:** the path carries the major version (`/data/v1/`). `manifest.schemaVersion` is
   `1.x` and only ever gains optional fields within v1.
+  - **1.1 (2026-10-29):** the index's layers gain optional `gdpPerCapita`, `alliances` and
+    `nextElection`, for the GDP per person, bloc membership and upcoming-elections layers.
 - **Enforcement:**
   - The engine validates every file with `json_schemer` before publishing. An invalid file aborts
     the publish.

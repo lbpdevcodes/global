@@ -59,7 +59,10 @@ Editorial values with no structured source live in `backend/config/overrides.yml
 stale until re-reviewed.
 
 `SNAPSHOT_DIR` points the reader at a different snapshot. The end-to-end tests use the
-contract's example snapshot this way (`SNAPSHOT_DIR=../contracts/examples`).
+contract's example snapshot this way (`SNAPSHOT_DIR=../contracts/examples`). The build
+prerenders a page for every entity in that snapshot, with its own preview card, and `SITE_URL`
+(default `https://geopolitical-globe.pages.dev`) sets the address those cards and the sitemap
+use. `web/public/og.png`, the card's image, is a screenshot of the globe.
 
 ### Rebuilding borders
 

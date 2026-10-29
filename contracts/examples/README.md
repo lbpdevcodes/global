@@ -8,5 +8,5 @@ needs no Ruby or database.
 **This is fixture data, not a source of truth.** Values are illustrative; many fields
 are deliberately null so the reader's "hide empty rows" path is exercised.
 
-Coverage: FRA (every field type populated), NLD (the "Holland" search alias), DNK with a
+Coverage: FRA (every field type populated, including every layer value), NLD (the "Holland" search alias), DNK with a
 GRL territory row, XKX and TWN (partially recognized; TWN carries a tensions item).

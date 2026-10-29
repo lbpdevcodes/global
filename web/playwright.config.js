@@ -13,7 +13,7 @@ export default defineConfig({
     { name: "mobile", use: { ...devices["Pixel 7"] }, testMatch: /mobile/ },
   ],
   // Build against the contract's example snapshot and serve it through
-  // Cloudflare's local Pages runtime, so _redirects and the SPA fallback
+  // Cloudflare's local Pages runtime, so prerendered pages and 404.html
   // behave as they do when deployed.
   webServer: {
     command: `SNAPSHOT_DIR=../contracts/examples npm run build && npx wrangler pages dev build/client --port ${port} --compatibility-date=2026-10-23`,
