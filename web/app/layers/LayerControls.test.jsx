@@ -52,6 +52,21 @@ describe("LayerControls", () => {
     expect(screen.getByRole("radio", { name: "Alliance or bloc" })).toBeChecked();
   });
 
+  it("starts the bloc layer on a bloc the data has when NATO is not among them", async () => {
+    const argentina = { code: "ARG", name: "Argentina", kind: "sovereign", layers: { alliances: value(["UN", "Mercosur"]) } };
+    function Unaligned() {
+      const [layer, setLayer] = useState(null);
+      return <LayerControls entities={[argentina]} layer={layer} onChange={setLayer} />;
+    }
+    render(<Unaligned />);
+
+    await userEvent.click(screen.getByRole("radio", { name: "Alliance or bloc" }));
+
+    expect(screen.getByRole("combobox", { name: "Bloc" })).toHaveValue("Mercosur");
+    expect(within(screen.getByRole("list", { name: "Alliance or bloc legend" })).getAllByRole("listitem")[0])
+      .toHaveTextContent("Member of Mercosur");
+  });
+
   it("names the elections layer's missing values as no known date", async () => {
     render(<Harness />);
 

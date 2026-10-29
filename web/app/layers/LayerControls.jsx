@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { blocLayer, blocsIn, classify, LAYERS, NO_DATA, noDataLabel, valueFor } from "../lib/layers.js";
+import { blocLayer, blocsIn, classify, LAYERS, layerFor, NO_DATA, noDataLabel, valueFor } from "../lib/layers.js";
 
 // Choose what colors the globe, read its legend, or read it as a table.
 export function LayerControls({ entities, layer, onChange }) {
@@ -14,7 +14,7 @@ export function LayerControls({ entities, layer, onChange }) {
             <label key={option?.id ?? "none"}
               className={`cursor-pointer rounded-full border px-2.5 py-1 text-xs has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-sky-400 ${layer?.id === option?.id ? "border-sky-500 bg-sky-950 text-sky-100" : "border-neutral-700 text-neutral-300 hover:border-neutral-500"}`}>
               <input type="radio" name={name} className="sr-only" checked={layer?.id === option?.id}
-                onChange={() => { onChange(option); setListOpen(false); }} />
+                onChange={() => { onChange(layerFor(option, entities)); setListOpen(false); }} />
               {option?.label ?? "None"}
             </label>
           ))}

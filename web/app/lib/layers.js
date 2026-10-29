@@ -96,6 +96,14 @@ export function blocLayer(bloc) {
   };
 }
 
+// The layer to show when a viewer picks this option: the bloc layer opens on
+// its default bloc only if the data has it, and otherwise on the first it has.
+export function layerFor(option, entities) {
+  const blocs = blocsIn(entities);
+  if (!option?.bloc || !blocs.length || blocs.includes(option.bloc)) return option;
+  return blocLayer(blocs[0]);
+}
+
 // The blocs the bloc layer can show, alphabetically. The UN is left out:
 // every country is a member, so it would color the whole globe one way.
 export function blocsIn(entities) {
