@@ -39,4 +39,11 @@ describe("contract examples the reader is tested against", () => {
 
     expect(errorsFor("country", profile).join()).toContain("/header/capital");
   });
+
+  it("are rejected when a layer value has the wrong type", () => {
+    const index = readJson("examples", "index.json");
+    index.entities.find((entity) => entity.code === "FRA").layers.gdpPerCapita = { value: "46150", asOf: "2026-10-27" };
+
+    expect(errorsFor("index", index).join()).toContain("/layers/gdpPerCapita/value");
+  });
 });

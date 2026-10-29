@@ -1,7 +1,7 @@
 module Snapshot
   # Every file of one snapshot, keyed by its path under data/v1.
   class Builder
-    SCHEMA_VERSION = "1.0"
+    SCHEMA_VERSION = "1.1"
 
     def initialize(generated_at:)
       @generated_at = generated_at.utc

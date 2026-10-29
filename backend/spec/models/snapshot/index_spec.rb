@@ -70,4 +70,23 @@ RSpec.describe Snapshot::Index do
 
     expect(entry("DNK").dig("layers", "conflictStatus", "value")).to eq("none")
   end
+
+  it "colors the GDP per person layer by the figure" do
+    observe(denmark, "economy.gdpPerCapitaUsd", 68_453.2, period: "2024")
+
+    expect(entry("DNK").dig("layers", "gdpPerCapita")).to eq("value" => 68_453.2, "asOf" => "2026-10-27")
+  end
+
+  it "carries a country's alliances and blocs for the bloc layer" do
+    observe(denmark, "politics.alliances", ["UN", "NATO", "EU"])
+
+    expect(entry("DNK").dig("layers", "alliances")).to eq("value" => ["UN", "NATO", "EU"], "asOf" => "2026-10-27")
+  end
+
+  it "carries the next national election's type and date for the elections layer" do
+    observe(denmark, "leadership.nextNationalElection", {"type" => "Legislative", "date" => "2026-11"})
+
+    expect(entry("DNK").dig("layers", "nextElection"))
+      .to eq("value" => {"type" => "Legislative", "date" => "2026-11"}, "asOf" => "2026-10-27")
+  end
 end

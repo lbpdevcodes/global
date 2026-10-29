@@ -8,11 +8,16 @@ module Snapshot
       items.any? ? "tension" : "none"
     end
 
+    AS_IS = :itself.to_proc
+
     # Each layer's field, and how to reduce the field's value to what the map colors by.
-    LAYERS = {"governmentType" => ["government.governmentType", :itself.to_proc],
+    LAYERS = {"governmentType" => ["government.governmentType", AS_IS],
               "democracyScore" => ["government.democracyScore", ->(value) { value["score"] }],
-              "population" => ["people.population", :itself.to_proc],
-              "conflictStatus" => ["tensions.ucdp", CONFLICT_CLASS]}
+              "population" => ["people.population", AS_IS],
+              "conflictStatus" => ["tensions.ucdp", CONFLICT_CLASS],
+              "gdpPerCapita" => ["economy.gdpPerCapitaUsd", AS_IS],
+              "alliances" => ["politics.alliances", AS_IS],
+              "nextElection" => ["leadership.nextNationalElection", AS_IS]}
 
     def initialize(entity, facts)
       @entity = entity
