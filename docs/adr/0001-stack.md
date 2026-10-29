@@ -40,5 +40,12 @@ The owner builds in Rails and wants v1 small, but without a rewrite when require
   standard settings, so any S3-compatible store works.
 - To keep a later move to Postgres a schema tweak, use JSON columns and avoid Postgres-only
   features.
-- `public/_redirects` sends `/country/*` to `/__spa-fallback`, without `.html`, because Pages 308s
-  a rewrite that targets a `.html` file (found in the M0 spike).
+- 2026-10-29: every country page is prerendered, so a shared link carries its own preview card.
+  This replaced the `public/_redirects` rewrite of `/country/*` to `/__spa-fallback`, because
+  Pages applies `_redirects` rules even when a file exists at the path, which would hide the
+  prerendered pages. `web/scripts/finish-build.js` shapes the build:
+  - Each page is served as `country/{CODE}.html`, because Pages serves `country/{CODE}/index.html`
+    at the trailing-slash URL.
+  - The SPA fallback is copied to `404.html`, so an unknown code answers 404 and the app still
+    explains it.
+  - `sitemap.xml` and `robots.txt` are written for search engines.

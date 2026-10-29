@@ -1,4 +1,0 @@
-# Country pages that are not pre-rendered hydrate from the SPA shell.
-# Pages strips ".html" and would 308 a rewrite to the .html file, so target
-# the extensionless path.
-/country/* /__spa-fallback 200

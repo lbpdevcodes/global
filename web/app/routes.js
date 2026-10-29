@@ -5,6 +5,6 @@ import { index, layout, route } from "@react-router/dev/routes";
 export default [
   layout("routes/explorer.jsx", [
     index("routes/blank.jsx"),
-    route("country/:code", "routes/blank.jsx", { id: "country" }),
+    route("country/:code", "routes/country.jsx", { id: "country" }),
   ]),
 ];
