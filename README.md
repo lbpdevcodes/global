@@ -104,6 +104,10 @@ when that is unset (as under launchd):
 printf 'add-generic-password -U -a "%s" -s op-service-account-token -w "%s"\n' "$USER" "$OP_SERVICE_ACCOUNT_TOKEN" | security -i
 ```
 
+`bin/refresh` turns off `op`'s 1Password app integration. Otherwise every `op` call made under
+launchd raises the macOS prompt "“op” would like to access data from other apps", and the run
+waits until someone answers it.
+
 ### Storage
 
 `deploy/settings.env` points at `s3://lbpdev/global/prod` on Linode (`us-mia-1`). Any
