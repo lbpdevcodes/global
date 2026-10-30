@@ -51,6 +51,10 @@ if [[ -z "${OP_SERVICE_ACCOUNT_TOKEN:-}" ]]; then
     { echo "No 1Password token: set OP_SERVICE_ACCOUNT_TOKEN or add it to the Keychain (README)." >&2; exit 1; }
   export OP_SERVICE_ACCOUNT_TOKEN
 fi
+# The service account needs nothing from the 1Password app. Without these, each
+# op call started by launchd reads the app's settings and macOS asks "“op” would
+# like to access data from other apps", holding the run until someone answers.
+export OP_BIOMETRIC_UNLOCK_ENABLED=false OP_LOAD_DESKTOP_APP_SETTINGS=false
 
 lock="${TMPDIR:-/tmp}/global-refresh.lock"
 mkdir "$lock" 2> /dev/null || { echo "Another refresh is running (remove $lock if not)." >&2; exit 1; }
